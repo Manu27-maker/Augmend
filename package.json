@@ -1,0 +1,16 @@
+{
+  "name": "argumend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ArguMend — catch the fallacy, not just the typo.",
+  "scripts": {
+    "dev": "concurrently -n client,server -c cyan,green \"npm --prefix client run dev\" \"npm --prefix server run dev\"",
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev",
+    "build": "npm --prefix client run build",
+    "preview": "npm --prefix client run preview"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
