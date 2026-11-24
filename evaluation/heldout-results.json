@@ -1,0 +1,563 @@
+{
+  "runAt": "2026-11-19T10:33:15.568Z",
+  "apiUrl": "http://localhost:5000",
+  "model": "openai/gpt-oss-120b",
+  "promptVersion": "v2",
+  "datasetVersion": "1.0.0",
+  "verification": {
+    "enabled": true,
+    "statuses": {
+      "ok": 18
+    },
+    "model": "openai/gpt-oss-20b",
+    "promptVersion": "v3",
+    "minConfidence": "medium",
+    "checked": 14,
+    "confirmed": 13,
+    "rejected": 1,
+    "unverified": 0,
+    "lowConfidence": 0,
+    "dropped": 1
+  },
+  "usageTotals": {
+    "promptTokens": 16030,
+    "completionTokens": 5195,
+    "totalTokens": 21225
+  },
+  "verifierUsageTotals": {
+    "promptTokens": 10401,
+    "completionTokens": 4329,
+    "totalTokens": 14730
+  },
+  "metrics": {
+    "cases": 18,
+    "expectedFindings": 14,
+    "predictedFindings": 13,
+    "tp": 12,
+    "fp": 1,
+    "fn": 2,
+    "precision": 0.9230769230769231,
+    "recall": 0.8571428571428571,
+    "f1": 0.888888888888889,
+    "macroPrecision": 0.85,
+    "macroRecall": 0.85,
+    "exactSetMatches": 16,
+    "documentAccuracy": 88.88888888888889,
+    "spanExactRate": 100,
+    "meanSpanOverlap": 1,
+    "cleanCases": 6,
+    "cleanCasesWithFindings": 0,
+    "cleanFalsePositiveRate": 0,
+    "perFallacy": [
+      {
+        "id": "false-cause",
+        "name": "False Cause",
+        "support": 2,
+        "tp": 1,
+        "fp": 0,
+        "fn": 1
+      },
+      {
+        "id": "strawman",
+        "name": "Strawman",
+        "support": 1,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      {
+        "id": "slippery-slope",
+        "name": "Slippery Slope",
+        "support": 1,
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      {
+        "id": "ad-hominem",
+        "name": "Ad Hominem",
+        "support": 3,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "hasty-generalization",
+        "name": "Hasty Generalization",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "false-dilemma",
+        "name": "False Dilemma",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "appeal-to-authority",
+        "name": "Appeal to Authority",
+        "support": 2,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "circular-reasoning",
+        "name": "Circular Reasoning",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "bandwagon",
+        "name": "Bandwagon",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "red-herring",
+        "name": "Red Herring",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      }
+    ],
+    "latency": {
+      "meanMs": 2024.3316499999992,
+      "maxMs": 3793.4737
+    }
+  },
+  "cases": [
+    {
+      "id": "h-fc-1",
+      "tags": [
+        "single",
+        "false-cause"
+      ],
+      "latencyMs": 3793.4737,
+      "exactSetMatch": false,
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "The redesign is obviously what brought in all the new users.",
+          "start": 76,
+          "end": 136
+        }
+      ],
+      "predicted": [],
+      "verdict": "❌ missed"
+    },
+    {
+      "id": "h-st-1",
+      "tags": [
+        "single",
+        "strawman"
+      ],
+      "latencyMs": 3619.0432999999994,
+      "exactSetMatch": false,
+      "expected": [
+        {
+          "fallacyId": "strawman",
+          "sentence": "The mayor supports a pilot bike lane, which is just a sneaky way to ban cars from the entire downtown.",
+          "start": 0,
+          "end": 102
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "The mayor supports a pilot bike lane, which is just a sneaky way to ban cars from the entire downtown.",
+          "start": 0,
+          "end": 102,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "❌ missed"
+    },
+    {
+      "id": "h-ss-1",
+      "tags": [
+        "single",
+        "slippery-slope"
+      ],
+      "latencyMs": 2924.0905999999995,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If we let employees work from home on Fridays, pretty soon nobody will come to the office at all and the company will collapse.",
+          "start": 0,
+          "end": 127
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If we let employees work from home on Fridays, pretty soon nobody will come to the office at all and the company will collapse.",
+          "start": 0,
+          "end": 127,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-ad-1",
+      "tags": [
+        "single",
+        "ad-hominem"
+      ],
+      "latencyMs": 2052.9745000000003,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Don't listen to her analysis of the tax plan; she grew up wealthy, so her numbers cannot be trusted.",
+          "start": 0,
+          "end": 100
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Don't listen to her analysis of the tax plan; she grew up wealthy, so her numbers cannot be trusted.",
+          "start": 0,
+          "end": 100,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-hg-1",
+      "tags": [
+        "single",
+        "hasty-generalization"
+      ],
+      "latencyMs": 1538.1071999999986,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "hasty-generalization",
+          "sentence": "The last two laptops I bought from that brand broke, so their products are all unreliable.",
+          "start": 0,
+          "end": 90
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "hasty-generalization",
+          "sentence": "The last two laptops I bought from that brand broke, so their products are all unreliable.",
+          "start": 0,
+          "end": 90,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-fd-1",
+      "tags": [
+        "single",
+        "false-dilemma"
+      ],
+      "latencyMs": 1970.1370000000024,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "You can either support this rezoning plan or admit you want housing to stay unaffordable.",
+          "start": 0,
+          "end": 89
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "You can either support this rezoning plan or admit you want housing to stay unaffordable.",
+          "start": 0,
+          "end": 89,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-aa-1",
+      "tags": [
+        "single",
+        "appeal-to-authority"
+      ],
+      "latencyMs": 2021.8237999999983,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "A celebrity chef says this diet is the healthiest in the world, so we should ignore the nutritionists who disagree.",
+          "start": 0,
+          "end": 115
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "A celebrity chef says this diet is the healthiest in the world, so we should ignore the nutritionists who disagree.",
+          "start": 0,
+          "end": 115,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-cr-1",
+      "tags": [
+        "single",
+        "circular-reasoning"
+      ],
+      "latencyMs": 2583.5208999999995,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "circular-reasoning",
+          "sentence": "This book is the most reliable source because no other source is as trustworthy as this book.",
+          "start": 0,
+          "end": 93
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "circular-reasoning",
+          "sentence": "This book is the most reliable source because no other source is as trustworthy as this book.",
+          "start": 0,
+          "end": 93,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-bw-1",
+      "tags": [
+        "single",
+        "bandwagon"
+      ],
+      "latencyMs": 2167.504799999995,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "All the other teams have adopted the new workflow, so we should adopt it too; that many teams cannot be wrong.",
+          "start": 0,
+          "end": 110
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "All the other teams have adopted the new workflow, so we should adopt it too; that many teams cannot be wrong.",
+          "start": 0,
+          "end": 110,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-rh-1",
+      "tags": [
+        "single",
+        "red-herring"
+      ],
+      "latencyMs": 1598.9487000000008,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "red-herring",
+          "sentence": "Instead of answering the audit question, the director spent ten minutes praising the company's new cafeteria.",
+          "start": 0,
+          "end": 109
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "red-herring",
+          "sentence": "Instead of answering the audit question, the director spent ten minutes praising the company's new cafeteria.",
+          "start": 0,
+          "end": 109,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-multi-1",
+      "tags": [
+        "multi"
+      ],
+      "latencyMs": 2940.3309999999983,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "Since we hired the new coach, the team has lost three games, so the coach is the reason we are losing.",
+          "start": 0,
+          "end": 102
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Anyone who wants to keep him must not care about winning.",
+          "start": 103,
+          "end": 160
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "Since we hired the new coach, the team has lost three games, so the coach is the reason we are losing.",
+          "start": 0,
+          "end": 102,
+          "verified": true,
+          "confidence": "high"
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Anyone who wants to keep him must not care about winning.",
+          "start": 103,
+          "end": 160,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-multi-2",
+      "tags": [
+        "multi"
+      ],
+      "latencyMs": 3657.3206999999966,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "The proposal is backed by a famous economist, so it must be sound.",
+          "start": 0,
+          "end": 66
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "And if you disagree, you are obviously part of the problem.",
+          "start": 67,
+          "end": 126
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "The proposal is backed by a famous economist, so it must be sound.",
+          "start": 0,
+          "end": 66,
+          "verified": true,
+          "confidence": "high"
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "And if you disagree, you are obviously part of the problem.",
+          "start": 67,
+          "end": 126,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "h-clean-1",
+      "tags": [
+        "clean"
+      ],
+      "latencyMs": 692.7644999999975,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "h-clean-2",
+      "tags": [
+        "clean",
+        "hedged"
+      ],
+      "latencyMs": 801.4818000000014,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "h-clean-3",
+      "tags": [
+        "clean"
+      ],
+      "latencyMs": 1078.3608000000022,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "h-clean-4",
+      "tags": [
+        "clean",
+        "emotional"
+      ],
+      "latencyMs": 1002.3498000000036,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "h-clean-5",
+      "tags": [
+        "clean",
+        "adversarial"
+      ],
+      "latencyMs": 1026.9249999999956,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "h-clean-6",
+      "tags": [
+        "clean",
+        "authority"
+      ],
+      "latencyMs": 968.8116000000009,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    }
+  ]
+}

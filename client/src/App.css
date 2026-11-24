@@ -652,6 +652,12 @@
   text-transform: uppercase;
 }
 
+.card-badge--verified {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  box-shadow: inset 0 0 0 1px var(--accent-border);
+}
+
 .card-quote {
   margin-top: 17px;
   padding: 13px 17px;

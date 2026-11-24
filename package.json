@@ -8,7 +8,18 @@
     "dev:client": "npm --prefix client run dev",
     "dev:server": "npm --prefix server run dev",
     "build": "npm --prefix client run build",
-    "preview": "npm --prefix client run preview"
+    "preview": "npm --prefix client run preview",
+    "test": "node --test server/verifier.test.js server/cache.test.js evaluation/calibration.test.mjs evaluation/confidence-cases.test.mjs evaluation/statistics.test.mjs evaluation/replay.test.mjs",
+    "probe:confidence": "node evaluation/probe-confidence.mjs",
+    "eval": "node evaluation/run-eval.mjs",
+    "record": "node evaluation/run-eval.mjs --record",
+    "record:precision:fresh": "node evaluation/run-eval.mjs --dataset precision-fresh.json --record",
+    "replay": "node evaluation/run-eval.mjs --replay latest",
+    "replay:precision:fresh": "node evaluation/run-eval.mjs --dataset precision-fresh.json --replay latest",
+    "eval:heldout": "node evaluation/run-eval.mjs --dataset heldout.json",
+    "eval:precision": "node evaluation/run-eval.mjs --dataset precision-set.json",
+    "eval:precision:heldout": "node evaluation/run-eval.mjs --dataset precision-heldout.json",
+    "eval:precision:fresh": "node evaluation/run-eval.mjs --dataset precision-fresh.json"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"

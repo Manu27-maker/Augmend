@@ -34,7 +34,18 @@ export default function FallacyCard({ fallacy, index, isActive, onActivate }) {
           <h3 className="card-title">{fallacy.type}</h3>
           <p className="card-category">{fallacy.category}</p>
         </div>
-        <span className="card-badge">Flagged</span>
+        <span
+          className={`card-badge${fallacy.verified ? ' card-badge--verified' : ''}`}
+          title={
+            fallacy.verified
+              ? fallacy.confidence === 'high'
+                ? 'Second-model review kept this finding: no supporting text was found. This is a review status, not a probability.'
+                : 'Second-model review kept this finding: partial or ambiguous support exists. This is a review status, not a probability.'
+              : 'Detector finding, not reviewed by the second model'
+          }
+        >
+          {fallacy.verified ? `Verified · ${fallacy.confidence || 'medium'}` : 'Flagged'}
+        </span>
       </header>
 
       <blockquote className="card-quote">

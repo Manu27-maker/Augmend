@@ -31,9 +31,9 @@ function CleanResult({ fallacies }) {
       <div>
         <h3 className="clean-title">No clear fallacies detected</h3>
         <p className="clean-copy">
-          The mock analyzer did not flag a reasoning pattern in this argument. A real pass would
-          still check for unsupported claims, missing evidence, and unstated assumptions — absence
-          of a named fallacy is not proof of a sound argument.
+          The analyzer did not flag a reasoning pattern in this argument. Absence of a named
+          fallacy is not proof of a sound argument — check for unsupported claims, missing
+          evidence, and unstated assumptions.
         </p>
         {fallacies.length === 0 && (
           <p className="clean-note">
@@ -93,11 +93,17 @@ export default function ResultsSection({
                   : `${fallacies.length} reasoning ${fallacies.length === 1 ? 'issue' : 'issues'} found`}
               </h2>
               <p className="results-subtitle">
-                {result.meta.wordCount.toLocaleString()} words reviewed
+                {(result.meta?.wordCount ?? 0).toLocaleString()} words reviewed
                 <span aria-hidden="true"> · </span>
-                {result.meta.sentenceCount} sentences scanned
+                {result.meta?.sentenceCount ?? 0} sentences scanned
                 <span aria-hidden="true"> · </span>
-                Mock analysis
+                {result.meta?.model ?? 'Groq analysis'}
+                {result.meta?.verification?.enabled && result.meta.verification.status === 'failed' && (
+                  <>
+                    <span aria-hidden="true"> · </span>
+                    second-pass review unavailable
+                  </>
+                )}
               </p>
             </div>
 
@@ -144,8 +150,8 @@ export default function ResultsSection({
 
                 <p className="text-panel-foot">
                   <InfoIcon width={15} height={15} />
-                  Highlights come from a mocked analyzer for UI testing — not final detection
-                  output.
+                  Highlights are model-generated — verify each quoted sentence before relying on
+                  it.
                 </p>
               </div>
 

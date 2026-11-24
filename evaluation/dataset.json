@@ -1,0 +1,224 @@
+{
+  "version": "1.1.0",
+  "description": "Labeled benchmark for ArguMend fallacy detection. Expected sentences must appear verbatim in the case text.",
+  "changelog": [
+    "1.1.0 — Adjudicated multi-3: imputing a hidden motive (\"they really want to hand the budget to their friends\") is ad-hominem, not strawman. No case text changed.",
+    "1.0.0 — Initial 22-case benchmark (13 fallacy-bearing, 8 clean controls, 1 typography case)."
+  ],
+  "cases": [
+    {
+      "id": "fc-1",
+      "tags": ["single", "false-cause"],
+      "text": "Sales of ice cream rose sharply in June, and so did reported drownings. This proves that eating ice cream makes people reckless around water.",
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "This proves that eating ice cream makes people reckless around water."
+        }
+      ]
+    },
+    {
+      "id": "fc-2",
+      "tags": ["single", "false-cause", "typography"],
+      "text": "Ever since the “smart” traffic lights were installed, delays have doubled, so the new system is clearly a failure.",
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "Ever since the “smart” traffic lights were installed, delays have doubled, so the new system is clearly a failure."
+        }
+      ]
+    },
+    {
+      "id": "ad-1",
+      "tags": ["single", "ad-hominem"],
+      "text": "The council's budget proposal should be rejected because its author was fired from her last job and has a messy personal life.",
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "The council's budget proposal should be rejected because its author was fired from her last job and has a messy personal life."
+        }
+      ]
+    },
+    {
+      "id": "ss-1",
+      "tags": ["single", "slippery-slope"],
+      "text": "If the school bans one book, then it will ban every book, and eventually students will be forbidden from reading anything at all.",
+      "expected": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If the school bans one book, then it will ban every book, and eventually students will be forbidden from reading anything at all."
+        }
+      ]
+    },
+    {
+      "id": "hg-1",
+      "tags": ["single", "hasty-generalization"],
+      "text": "I met two rude taxi drivers in this city, so people here are obviously hostile to visitors.",
+      "expected": [
+        {
+          "fallacyId": "hasty-generalization",
+          "sentence": "I met two rude taxi drivers in this city, so people here are obviously hostile to visitors."
+        }
+      ]
+    },
+    {
+      "id": "fd-1",
+      "tags": ["single", "false-dilemma"],
+      "text": "We must either cut the library budget by half or accept that the town no longer cares about literacy.",
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "We must either cut the library budget by half or accept that the town no longer cares about literacy."
+        }
+      ]
+    },
+    {
+      "id": "aa-1",
+      "tags": ["single", "appeal-to-authority"],
+      "text": "My favourite actor says this vitamin cures colds, so it must work, no matter what the medical studies show.",
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "My favourite actor says this vitamin cures colds, so it must work, no matter what the medical studies show."
+        }
+      ]
+    },
+    {
+      "id": "cr-1",
+      "tags": ["single", "circular-reasoning"],
+      "text": "This law is the fairest one on the books because it is the most just piece of legislation we have.",
+      "expected": [
+        {
+          "fallacyId": "circular-reasoning",
+          "sentence": "This law is the fairest one on the books because it is the most just piece of legislation we have."
+        }
+      ]
+    },
+    {
+      "id": "bw-1",
+      "tags": ["single", "bandwagon"],
+      "text": "Almost everyone at the office has switched to this project tool, so it has to be the right choice for our team.",
+      "expected": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "Almost everyone at the office has switched to this project tool, so it has to be the right choice for our team."
+        }
+      ]
+    },
+    {
+      "id": "st-1",
+      "tags": ["single", "strawman"],
+      "text": "My opponent wants to review the testing policy, which really means she wants to scrap all standards and let schools do whatever they like.",
+      "expected": [
+        {
+          "fallacyId": "strawman",
+          "sentence": "My opponent wants to review the testing policy, which really means she wants to scrap all standards and let schools do whatever they like."
+        }
+      ]
+    },
+    {
+      "id": "rh-1",
+      "tags": ["single", "red-herring"],
+      "text": "You ask about the company's missing funds, but let's talk instead about how much the CEO has done for local charities.",
+      "expected": [
+        {
+          "fallacyId": "red-herring",
+          "sentence": "You ask about the company's missing funds, but let's talk instead about how much the CEO has done for local charities."
+        }
+      ]
+    },
+    {
+      "id": "multi-1",
+      "tags": ["multi"],
+      "text": "Ever since the new manager arrived, sales have fallen, so he is clearly bad at his job. Anyone who disagrees simply hates change and must be a fool.",
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "Ever since the new manager arrived, sales have fallen, so he is clearly bad at his job."
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Anyone who disagrees simply hates change and must be a fool."
+        }
+      ]
+    },
+    {
+      "id": "multi-2",
+      "tags": ["multi"],
+      "text": "Either we ban all cars downtown or we admit we do not care about children's safety. Every major city has already done it, so we should too.",
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "Either we ban all cars downtown or we admit we do not care about children's safety."
+        },
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "Every major city has already done it, so we should too."
+        }
+      ]
+    },
+    {
+      "id": "multi-3",
+      "tags": ["multi"],
+      "text": "The senator's plan is popular, so it must be sound. Critics say the plan needs review, but they really want to hand the budget to their friends.",
+      "expected": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "The senator's plan is popular, so it must be sound."
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Critics say the plan needs review, but they really want to hand the budget to their friends."
+        }
+      ]
+    },
+    {
+      "id": "clean-1",
+      "tags": ["clean"],
+      "text": "Cities should adopt a limited curfew for teenagers under sixteen. A 2023 review of nine municipal programs found that nighttime incidents involving minors fell by 12 percent in the first year, though the authors noted that police staffing also increased during the same period. That evidence is suggestive, not conclusive. A reasonable next step is a one-year pilot in two districts, with an independent evaluation that controls for policing levels.",
+      "expected": []
+    },
+    {
+      "id": "clean-2",
+      "tags": ["clean"],
+      "text": "During the trial, the program reduced reoffending by 8 percent, but the authors warn that the sample was small and the result was not statistically significant. A larger study is needed before the city commits funding.",
+      "expected": []
+    },
+    {
+      "id": "clean-3",
+      "tags": ["clean", "causal"],
+      "text": "Because the bridge failed its inspection in March, the county closed it for repairs. Traffic data shows delays of about ten minutes on the detour, which the county says is acceptable until the work ends in June.",
+      "expected": []
+    },
+    {
+      "id": "clean-4",
+      "tags": ["clean", "authority"],
+      "text": "Dr. Chen, a structural engineer who inspected the site, said the cracks were superficial. Her report includes photographs and a stress test, and two independent engineers reached the same conclusion.",
+      "expected": []
+    },
+    {
+      "id": "clean-5",
+      "tags": ["clean", "generalization"],
+      "text": "Most respondents in the survey supported the proposal, but the survey only reached households with landlines. That limits how much the result tells us about the wider population.",
+      "expected": []
+    },
+    {
+      "id": "clean-6",
+      "tags": ["clean"],
+      "text": "The proposal would cost $2 million over five years. The city's capital budget has $2.1 million available, so the project fits within the current plan.",
+      "expected": []
+    },
+    {
+      "id": "clean-7",
+      "tags": ["clean", "adversarial"],
+      "text": "The report accuses the advertisement of a false dilemma, arguing that it presents only two options when several others exist.",
+      "expected": []
+    },
+    {
+      "id": "clean-8",
+      "tags": ["clean", "emotional"],
+      "text": "I am angry that the clinic closed, and I think the decision was wrong. The clinic served 400 patients a month, and the nearest alternative is 30 miles away.",
+      "expected": []
+    }
+  ]
+}

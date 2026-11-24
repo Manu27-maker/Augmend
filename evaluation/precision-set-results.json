@@ -1,0 +1,397 @@
+{
+  "runAt": "2026-11-19T10:44:17.036Z",
+  "apiUrl": "http://localhost:5000",
+  "model": "openai/gpt-oss-120b",
+  "promptVersion": "v2",
+  "datasetVersion": "1.0.0",
+  "verification": {
+    "enabled": true,
+    "statuses": {
+      "ok": 16
+    },
+    "model": "openai/gpt-oss-20b",
+    "promptVersion": "v6",
+    "minConfidence": "medium",
+    "checked": 9,
+    "confirmed": 4,
+    "rejected": 5,
+    "unverified": 0,
+    "lowConfidence": 0,
+    "dropped": 5
+  },
+  "usageTotals": {
+    "promptTokens": 14225,
+    "completionTokens": 4351,
+    "totalTokens": 18576
+  },
+  "verifierUsageTotals": {
+    "promptTokens": 9932,
+    "completionTokens": 2056,
+    "totalTokens": 11988
+  },
+  "metrics": {
+    "cases": 16,
+    "expectedFindings": 4,
+    "predictedFindings": 4,
+    "tp": 4,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1,
+    "recall": 1,
+    "f1": 1,
+    "macroPrecision": 1,
+    "macroRecall": 1,
+    "exactSetMatches": 16,
+    "documentAccuracy": 100,
+    "spanExactRate": 100,
+    "meanSpanOverlap": 1,
+    "cleanCases": 12,
+    "cleanCasesWithFindings": 0,
+    "cleanFalsePositiveRate": 0,
+    "perFallacy": [
+      {
+        "id": "false-cause",
+        "name": "False Cause",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "strawman",
+        "name": "Strawman",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "slippery-slope",
+        "name": "Slippery Slope",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "ad-hominem",
+        "name": "Ad Hominem",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "hasty-generalization",
+        "name": "Hasty Generalization",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "false-dilemma",
+        "name": "False Dilemma",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "appeal-to-authority",
+        "name": "Appeal to Authority",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "circular-reasoning",
+        "name": "Circular Reasoning",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "bandwagon",
+        "name": "Bandwagon",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "red-herring",
+        "name": "Red Herring",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      }
+    ],
+    "latency": {
+      "meanMs": 1979.7473124999985,
+      "maxMs": 4588.703099999999
+    }
+  },
+  "cases": [
+    {
+      "id": "pn-1",
+      "tags": [
+        "clean",
+        "causal"
+      ],
+      "latencyMs": 1073.3560000000002,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-2",
+      "tags": [
+        "clean",
+        "authority"
+      ],
+      "latencyMs": 1750.0547000000001,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-3",
+      "tags": [
+        "clean",
+        "adversarial",
+        "reported"
+      ],
+      "latencyMs": 598.0509000000002,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-4",
+      "tags": [
+        "clean",
+        "hedged"
+      ],
+      "latencyMs": 673.3734999999997,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-5",
+      "tags": [
+        "clean",
+        "rhetorical"
+      ],
+      "latencyMs": 3440.077300000001,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-6",
+      "tags": [
+        "clean",
+        "emotional"
+      ],
+      "latencyMs": 2121.1712000000007,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-7",
+      "tags": [
+        "clean",
+        "dilemma"
+      ],
+      "latencyMs": 4588.703099999999,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-8",
+      "tags": [
+        "clean",
+        "correlation"
+      ],
+      "latencyMs": 804.4366999999984,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-9",
+      "tags": [
+        "clean",
+        "steelman"
+      ],
+      "latencyMs": 2476.5194999999985,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-10",
+      "tags": [
+        "clean",
+        "anecdote"
+      ],
+      "latencyMs": 2343.896199999999,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-11",
+      "tags": [
+        "clean",
+        "expertise"
+      ],
+      "latencyMs": 964.5809999999983,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pn-12",
+      "tags": [
+        "clean",
+        "conditional"
+      ],
+      "latencyMs": 1940.7887999999948,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pf-1",
+      "tags": [
+        "fallacy",
+        "ad-hominem"
+      ],
+      "latencyMs": 2044.9905999999974,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "The new safety training is pointless because the trainer has a tattoo and rides a motorcycle.",
+          "start": 0,
+          "end": 93
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "The new safety training is pointless because the trainer has a tattoo and rides a motorcycle.",
+          "start": 0,
+          "end": 93,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "pf-2",
+      "tags": [
+        "fallacy",
+        "bandwagon"
+      ],
+      "latencyMs": 2787.254000000001,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "Every company is moving to four-day weeks, so ours should too; that many companies cannot be wrong.",
+          "start": 0,
+          "end": 99
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "Every company is moving to four-day weeks, so ours should too; that many companies cannot be wrong.",
+          "start": 0,
+          "end": 99,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "pf-3",
+      "tags": [
+        "fallacy",
+        "slippery-slope"
+      ],
+      "latencyMs": 1865.0105999999942,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If we allow one exception to the deadline, soon no deadline will mean anything and the whole program will collapse.",
+          "start": 0,
+          "end": 115
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If we allow one exception to the deadline, soon no deadline will mean anything and the whole program will collapse.",
+          "start": 0,
+          "end": 115,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "pf-4",
+      "tags": [
+        "fallacy",
+        "circular-reasoning"
+      ],
+      "latencyMs": 2203.6928999999946,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "circular-reasoning",
+          "sentence": "The consultant's report is right because it is the most accurate report available.",
+          "start": 0,
+          "end": 82
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "circular-reasoning",
+          "sentence": "The consultant's report is right because it is the most accurate report available.",
+          "start": 0,
+          "end": 82,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "description": "Precision-focused benchmark: hard negatives that tempt a detector into false positives, plus clear positives to catch over-filtering. Used to measure the verification pass.",
+  "changelog": [
+    "1.0.0 — 16 cases: 12 clean hard negatives (valid causation, expertise, reported fallacies, hedging, emotional evidence, genuine constraints) and 4 clear fallacies."
+  ],
+  "cases": [
+    {
+      "id": "pn-1",
+      "tags": ["clean", "causal"],
+      "text": "The outage began minutes after the firmware update was deployed, and the vendor's incident report traced the failure to a bug introduced in that release. The update was rolled back the same night.",
+      "expected": []
+    },
+    {
+      "id": "pn-2",
+      "tags": ["clean", "authority"],
+      "text": "The World Health Organization's 2024 guidance recommends the vaccine for adults over 65. The recommendation cites three randomized trials and is reviewed annually.",
+      "expected": []
+    },
+    {
+      "id": "pn-3",
+      "tags": ["clean", "adversarial", "reported"],
+      "text": "The reviewer noted that the advertisement relied on a false dilemma by offering only two subscription options.",
+      "expected": []
+    },
+    {
+      "id": "pn-4",
+      "tags": ["clean", "hedged"],
+      "text": "In our sample of 30 customers, most preferred the new layout, though the sample is too small to generalize to all users.",
+      "expected": []
+    },
+    {
+      "id": "pn-5",
+      "tags": ["clean", "rhetorical"],
+      "text": "If the policy is so effective, why has the city not published the evaluation it promised two years ago?",
+      "expected": []
+    },
+    {
+      "id": "pn-6",
+      "tags": ["clean", "emotional"],
+      "text": "I am furious about the closure. The clinic handled 400 visits a month, and the next nearest clinic is 30 miles away.",
+      "expected": []
+    },
+    {
+      "id": "pn-7",
+      "tags": ["clean", "dilemma"],
+      "text": "The grant can fund either the roof or the heating system, not both, because the total award is capped at $200,000.",
+      "expected": []
+    },
+    {
+      "id": "pn-8",
+      "tags": ["clean", "correlation"],
+      "text": "Ice cream sales and drowning rates both rise in summer. That is likely because hot weather increases both, not because ice cream causes drowning.",
+      "expected": []
+    },
+    {
+      "id": "pn-9",
+      "tags": ["clean", "steelman"],
+      "text": "Supporters argue the tax will fund transit; I think the revenue estimates are too optimistic because prior projections missed by 40 percent.",
+      "expected": []
+    },
+    {
+      "id": "pn-10",
+      "tags": ["clean", "anecdote"],
+      "text": "My first attempt at the recipe failed because I used cold butter. I will try again with room-temperature butter.",
+      "expected": []
+    },
+    {
+      "id": "pn-11",
+      "tags": ["clean", "expertise"],
+      "text": "The structural engineer's report found the cracks superficial, based on a stress test and photographs included in the appendix.",
+      "expected": []
+    },
+    {
+      "id": "pn-12",
+      "tags": ["clean", "conditional"],
+      "text": "If the pilot reduces waiting times, we should expand it; if not, we should end it. The evaluation will report in June.",
+      "expected": []
+    },
+    {
+      "id": "pf-1",
+      "tags": ["fallacy", "ad-hominem"],
+      "text": "The new safety training is pointless because the trainer has a tattoo and rides a motorcycle.",
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "The new safety training is pointless because the trainer has a tattoo and rides a motorcycle."
+        }
+      ]
+    },
+    {
+      "id": "pf-2",
+      "tags": ["fallacy", "bandwagon"],
+      "text": "Every company is moving to four-day weeks, so ours should too; that many companies cannot be wrong.",
+      "expected": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "Every company is moving to four-day weeks, so ours should too; that many companies cannot be wrong."
+        }
+      ]
+    },
+    {
+      "id": "pf-3",
+      "tags": ["fallacy", "slippery-slope"],
+      "text": "If we allow one exception to the deadline, soon no deadline will mean anything and the whole program will collapse.",
+      "expected": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If we allow one exception to the deadline, soon no deadline will mean anything and the whole program will collapse."
+        }
+      ]
+    },
+    {
+      "id": "pf-4",
+      "tags": ["fallacy", "circular-reasoning"],
+      "text": "The consultant's report is right because it is the most accurate report available.",
+      "expected": [
+        {
+          "fallacyId": "circular-reasoning",
+          "sentence": "The consultant's report is right because it is the most accurate report available."
+        }
+      ]
+    }
+  ]
+}

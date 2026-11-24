@@ -99,7 +99,7 @@ export default function InputPanel({
           <span className="hint-separator" aria-hidden="true">
             ·
           </span>
-          Demo mode: nothing leaves your browser.
+          Your text is sent to Groq for analysis.
         </p>
 
         <button

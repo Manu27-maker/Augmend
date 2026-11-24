@@ -50,7 +50,7 @@ export default function Hero() {
           </ul>
           <div className="hero-panel-footer">
             <span className="demo-dot" aria-hidden="true" />
-            Demo mode — analysis is mocked in the browser
+            Live analysis — powered by Groq
           </div>
         </aside>
       </div>

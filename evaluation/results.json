@@ -1,0 +1,664 @@
+{
+  "runAt": "2026-11-19T10:10:41.749Z",
+  "apiUrl": "http://localhost:5000",
+  "model": "openai/gpt-oss-120b",
+  "promptVersion": "v2",
+  "datasetVersion": "1.1.0",
+  "verification": {
+    "enabled": true,
+    "statuses": {
+      "ok": 22
+    },
+    "model": "openai/gpt-oss-20b",
+    "promptVersion": "v3",
+    "minConfidence": "medium",
+    "checked": 17,
+    "confirmed": 17,
+    "rejected": 0,
+    "lowConfidence": 0,
+    "dropped": 0
+  },
+  "usageTotals": {
+    "promptTokens": 19711,
+    "completionTokens": 6456,
+    "totalTokens": 26167
+  },
+  "verifierUsageTotals": {
+    "promptTokens": 12214,
+    "completionTokens": 6269,
+    "totalTokens": 18483
+  },
+  "metrics": {
+    "cases": 22,
+    "expectedFindings": 17,
+    "predictedFindings": 17,
+    "tp": 17,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1,
+    "recall": 1,
+    "f1": 1,
+    "macroPrecision": 1,
+    "macroRecall": 1,
+    "exactSetMatches": 22,
+    "documentAccuracy": 100,
+    "spanExactRate": 100,
+    "meanSpanOverlap": 1,
+    "cleanCases": 8,
+    "cleanCasesWithFindings": 0,
+    "cleanFalsePositiveRate": 0,
+    "perFallacy": [
+      {
+        "id": "false-cause",
+        "name": "False Cause",
+        "support": 3,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "strawman",
+        "name": "Strawman",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "slippery-slope",
+        "name": "Slippery Slope",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "ad-hominem",
+        "name": "Ad Hominem",
+        "support": 3,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "hasty-generalization",
+        "name": "Hasty Generalization",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "false-dilemma",
+        "name": "False Dilemma",
+        "support": 2,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "appeal-to-authority",
+        "name": "Appeal to Authority",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "circular-reasoning",
+        "name": "Circular Reasoning",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "bandwagon",
+        "name": "Bandwagon",
+        "support": 3,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "red-herring",
+        "name": "Red Herring",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      }
+    ],
+    "latency": {
+      "meanMs": 2157.841109090909,
+      "maxMs": 7709.6466999999975
+    }
+  },
+  "cases": [
+    {
+      "id": "fc-1",
+      "tags": [
+        "single",
+        "false-cause"
+      ],
+      "latencyMs": 2869.9698,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "This proves that eating ice cream makes people reckless around water.",
+          "start": 72,
+          "end": 141
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "This proves that eating ice cream makes people reckless around water.",
+          "start": 72,
+          "end": 141,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "fc-2",
+      "tags": [
+        "single",
+        "false-cause",
+        "typography"
+      ],
+      "latencyMs": 2056.6772,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "Ever since the “smart” traffic lights were installed, delays have doubled, so the new system is clearly a failure.",
+          "start": 0,
+          "end": 114
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "Ever since the “smart” traffic lights were installed, delays have doubled, so the new system is clearly a failure.",
+          "start": 0,
+          "end": 114,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "ad-1",
+      "tags": [
+        "single",
+        "ad-hominem"
+      ],
+      "latencyMs": 2370.9387000000006,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "The council's budget proposal should be rejected because its author was fired from her last job and has a messy personal life.",
+          "start": 0,
+          "end": 126
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "The council's budget proposal should be rejected because its author was fired from her last job and has a messy personal life.",
+          "start": 0,
+          "end": 126,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "ss-1",
+      "tags": [
+        "single",
+        "slippery-slope"
+      ],
+      "latencyMs": 1957.7515000000003,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If the school bans one book, then it will ban every book, and eventually students will be forbidden from reading anything at all.",
+          "start": 0,
+          "end": 129
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If the school bans one book, then it will ban every book, and eventually students will be forbidden from reading anything at all.",
+          "start": 0,
+          "end": 129,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "hg-1",
+      "tags": [
+        "single",
+        "hasty-generalization"
+      ],
+      "latencyMs": 2072.7387,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "hasty-generalization",
+          "sentence": "I met two rude taxi drivers in this city, so people here are obviously hostile to visitors.",
+          "start": 0,
+          "end": 91
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "hasty-generalization",
+          "sentence": "I met two rude taxi drivers in this city, so people here are obviously hostile to visitors.",
+          "start": 0,
+          "end": 91,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "fd-1",
+      "tags": [
+        "single",
+        "false-dilemma"
+      ],
+      "latencyMs": 2893.8451000000023,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "We must either cut the library budget by half or accept that the town no longer cares about literacy.",
+          "start": 0,
+          "end": 101
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "We must either cut the library budget by half or accept that the town no longer cares about literacy.",
+          "start": 0,
+          "end": 101,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "aa-1",
+      "tags": [
+        "single",
+        "appeal-to-authority"
+      ],
+      "latencyMs": 2385.1515,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "My favourite actor says this vitamin cures colds, so it must work, no matter what the medical studies show.",
+          "start": 0,
+          "end": 107
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "My favourite actor says this vitamin cures colds, so it must work, no matter what the medical studies show.",
+          "start": 0,
+          "end": 107,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "cr-1",
+      "tags": [
+        "single",
+        "circular-reasoning"
+      ],
+      "latencyMs": 2275.173999999999,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "circular-reasoning",
+          "sentence": "This law is the fairest one on the books because it is the most just piece of legislation we have.",
+          "start": 0,
+          "end": 98
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "circular-reasoning",
+          "sentence": "This law is the fairest one on the books because it is the most just piece of legislation we have.",
+          "start": 0,
+          "end": 98,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "bw-1",
+      "tags": [
+        "single",
+        "bandwagon"
+      ],
+      "latencyMs": 2382.7000000000007,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "Almost everyone at the office has switched to this project tool, so it has to be the right choice for our team.",
+          "start": 0,
+          "end": 111
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "Almost everyone at the office has switched to this project tool, so it has to be the right choice for our team.",
+          "start": 0,
+          "end": 111,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "st-1",
+      "tags": [
+        "single",
+        "strawman"
+      ],
+      "latencyMs": 2477.0728000000017,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "strawman",
+          "sentence": "My opponent wants to review the testing policy, which really means she wants to scrap all standards and let schools do whatever they like.",
+          "start": 0,
+          "end": 138
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "strawman",
+          "sentence": "My opponent wants to review the testing policy, which really means she wants to scrap all standards and let schools do whatever they like.",
+          "start": 0,
+          "end": 138,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "rh-1",
+      "tags": [
+        "single",
+        "red-herring"
+      ],
+      "latencyMs": 1861.1105000000025,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "red-herring",
+          "sentence": "You ask about the company's missing funds, but let's talk instead about how much the CEO has done for local charities.",
+          "start": 0,
+          "end": 118
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "red-herring",
+          "sentence": "You ask about the company's missing funds, but let's talk instead about how much the CEO has done for local charities.",
+          "start": 0,
+          "end": 118,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "multi-1",
+      "tags": [
+        "multi"
+      ],
+      "latencyMs": 2279.956099999996,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "Ever since the new manager arrived, sales have fallen, so he is clearly bad at his job.",
+          "start": 0,
+          "end": 87
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Anyone who disagrees simply hates change and must be a fool.",
+          "start": 88,
+          "end": 148
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "Ever since the new manager arrived, sales have fallen, so he is clearly bad at his job.",
+          "start": 0,
+          "end": 87,
+          "verified": true,
+          "confidence": "high"
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Anyone who disagrees simply hates change and must be a fool.",
+          "start": 88,
+          "end": 148,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "multi-2",
+      "tags": [
+        "multi"
+      ],
+      "latencyMs": 2996.409399999997,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "Either we ban all cars downtown or we admit we do not care about children's safety.",
+          "start": 0,
+          "end": 83
+        },
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "Every major city has already done it, so we should too.",
+          "start": 84,
+          "end": 139
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "Either we ban all cars downtown or we admit we do not care about children's safety.",
+          "start": 0,
+          "end": 83,
+          "verified": true,
+          "confidence": "high"
+        },
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "Every major city has already done it, so we should too.",
+          "start": 84,
+          "end": 139,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "multi-3",
+      "tags": [
+        "multi"
+      ],
+      "latencyMs": 7709.6466999999975,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "The senator's plan is popular, so it must be sound.",
+          "start": 0,
+          "end": 51
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Critics say the plan needs review, but they really want to hand the budget to their friends.",
+          "start": 52,
+          "end": 144
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "The senator's plan is popular, so it must be sound.",
+          "start": 0,
+          "end": 51,
+          "verified": true,
+          "confidence": "high"
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Critics say the plan needs review, but they really want to hand the budget to their friends.",
+          "start": 52,
+          "end": 144,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "clean-1",
+      "tags": [
+        "clean"
+      ],
+      "latencyMs": 1662.419600000001,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "clean-2",
+      "tags": [
+        "clean"
+      ],
+      "latencyMs": 1253.2206000000006,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "clean-3",
+      "tags": [
+        "clean",
+        "causal"
+      ],
+      "latencyMs": 1254.9164000000019,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "clean-4",
+      "tags": [
+        "clean",
+        "authority"
+      ],
+      "latencyMs": 639.1975999999995,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "clean-5",
+      "tags": [
+        "clean",
+        "generalization"
+      ],
+      "latencyMs": 1247.8341999999975,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "clean-6",
+      "tags": [
+        "clean"
+      ],
+      "latencyMs": 939.3586000000068,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "clean-7",
+      "tags": [
+        "clean",
+        "adversarial"
+      ],
+      "latencyMs": 633.3111999999965,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "clean-8",
+      "tags": [
+        "clean",
+        "emotional"
+      ],
+      "latencyMs": 1253.1042000000016,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    }
+  ]
+}

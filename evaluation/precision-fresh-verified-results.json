@@ -1,0 +1,506 @@
+{
+  "runAt": "2026-11-19T16:02:49.573Z",
+  "apiUrl": "http://localhost:5000",
+  "model": "openai/gpt-oss-20b",
+  "promptVersion": "v2",
+  "datasetVersion": "1.0.0",
+  "verification": {
+    "enabled": true,
+    "statuses": {
+      "ok": 17
+    },
+    "model": "openai/gpt-oss-20b",
+    "promptVersion": "v10",
+    "minConfidence": "medium",
+    "checked": 7,
+    "confirmed": 7,
+    "rejected": 0,
+    "unverified": 0,
+    "unsupportedRejections": 0,
+    "contradictoryConfirmations": 0,
+    "lowConfidence": 0,
+    "dropped": 0
+  },
+  "usageTotals": {
+    "promptTokens": 15080,
+    "completionTokens": 2055,
+    "totalTokens": 17135
+  },
+  "verifierUsageTotals": {
+    "promptTokens": 9926,
+    "completionTokens": 643,
+    "totalTokens": 10569
+  },
+  "metrics": {
+    "cases": 17,
+    "expectedFindings": 5,
+    "predictedFindings": 7,
+    "tp": 5,
+    "fp": 2,
+    "fn": 0,
+    "precision": 0.7142857142857143,
+    "recall": 1,
+    "f1": 0.8333333333333333,
+    "macroPrecision": 0.8,
+    "macroRecall": 1,
+    "exactSetMatches": 15,
+    "documentAccuracy": 88.23529411764706,
+    "spanExactRate": 100,
+    "meanSpanOverlap": 1,
+    "cleanCases": 12,
+    "cleanCasesWithFindings": 2,
+    "cleanFalsePositiveRate": 16.666666666666664,
+    "calibration": {
+      "verified": 7,
+      "buckets": [
+        {
+          "level": "high",
+          "predicted": 7,
+          "tp": 5,
+          "fp": 2,
+          "precision": 0.7142857142857143
+        },
+        {
+          "level": "medium",
+          "predicted": 0,
+          "tp": 0,
+          "fp": 0,
+          "precision": null
+        },
+        {
+          "level": "low",
+          "predicted": 0,
+          "tp": 0,
+          "fp": 0,
+          "precision": null
+        }
+      ],
+      "unverified": {
+        "level": "unverified",
+        "predicted": 0,
+        "tp": 0,
+        "fp": 0,
+        "precision": null
+      },
+      "thresholds": [
+        {
+          "label": "high only",
+          "tp": 5,
+          "fp": 2,
+          "fn": 0,
+          "precision": 0.7142857142857143,
+          "recall": 1,
+          "f1": 0.8333333333333333
+        },
+        {
+          "label": "medium and above",
+          "tp": 5,
+          "fp": 2,
+          "fn": 0,
+          "precision": 0.7142857142857143,
+          "recall": 1,
+          "f1": 0.8333333333333333
+        },
+        {
+          "label": "all verified",
+          "tp": 5,
+          "fp": 2,
+          "fn": 0,
+          "precision": 0.7142857142857143,
+          "recall": 1,
+          "f1": 0.8333333333333333
+        }
+      ]
+    },
+    "perFallacy": [
+      {
+        "id": "false-cause",
+        "name": "False Cause",
+        "support": 1,
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      {
+        "id": "strawman",
+        "name": "Strawman",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "slippery-slope",
+        "name": "Slippery Slope",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "ad-hominem",
+        "name": "Ad Hominem",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "hasty-generalization",
+        "name": "Hasty Generalization",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "false-dilemma",
+        "name": "False Dilemma",
+        "support": 1,
+        "tp": 1,
+        "fp": 1,
+        "fn": 0
+      },
+      {
+        "id": "appeal-to-authority",
+        "name": "Appeal to Authority",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "circular-reasoning",
+        "name": "Circular Reasoning",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "bandwagon",
+        "name": "Bandwagon",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "red-herring",
+        "name": "Red Herring",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      }
+    ],
+    "latency": {
+      "meanMs": 1076.9750176470595,
+      "maxMs": 2200.031799999997
+    }
+  },
+  "cases": [
+    {
+      "id": "fx-1",
+      "tags": [
+        "clean",
+        "causal"
+      ],
+      "latencyMs": 1215.1831000000002,
+      "exactSetMatch": false,
+      "expected": [],
+      "predicted": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "The plant's output fell 12 percent after the conveyor motor failed; maintenance logs show the motor was offline for three shifts.",
+          "start": 0,
+          "end": 129,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "❌ false positive"
+    },
+    {
+      "id": "fx-2",
+      "tags": [
+        "clean",
+        "authority"
+      ],
+      "latencyMs": 437.0456000000013,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "fx-3",
+      "tags": [
+        "clean",
+        "reported"
+      ],
+      "latencyMs": 689.1045999999988,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "fx-4",
+      "tags": [
+        "clean",
+        "hedged"
+      ],
+      "latencyMs": 551.796199999997,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "fx-5",
+      "tags": [
+        "clean",
+        "rhetorical"
+      ],
+      "latencyMs": 851.241200000004,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "fx-6",
+      "tags": [
+        "clean",
+        "emotional"
+      ],
+      "latencyMs": 274.36699999999837,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "fx-7",
+      "tags": [
+        "clean",
+        "dilemma"
+      ],
+      "latencyMs": 1325.354999999996,
+      "exactSetMatch": false,
+      "expected": [],
+      "predicted": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "The lease allows either a one-year renewal or a month-to-month extension; those are the only two options in the contract.",
+          "start": 0,
+          "end": 121,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "❌ false positive"
+    },
+    {
+      "id": "fx-8",
+      "tags": [
+        "clean",
+        "correlation"
+      ],
+      "latencyMs": 711.786300000007,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "fx-9",
+      "tags": [
+        "clean",
+        "steelman"
+      ],
+      "latencyMs": 507.92560000001686,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "fx-10",
+      "tags": [
+        "clean",
+        "anecdote"
+      ],
+      "latencyMs": 617.344700000016,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "fx-11",
+      "tags": [
+        "clean",
+        "expertise"
+      ],
+      "latencyMs": 1219.1950999999826,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "fx-12",
+      "tags": [
+        "clean",
+        "conditional"
+      ],
+      "latencyMs": 810.163899999985,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ff-1",
+      "tags": [
+        "fallacy",
+        "ad-hominem"
+      ],
+      "latencyMs": 1788.1517000000167,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Her analysis of the tax code is wrong because she drives an expensive car.",
+          "start": 0,
+          "end": 74
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Her analysis of the tax code is wrong because she drives an expensive car.",
+          "start": 0,
+          "end": 74,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "ff-2",
+      "tags": [
+        "fallacy",
+        "appeal-to-authority"
+      ],
+      "latencyMs": 1423.1365000000224,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "A retired tennis star says this vitamin cures insomnia, so it must work.",
+          "start": 0,
+          "end": 72
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "A retired tennis star says this vitamin cures insomnia, so it must work.",
+          "start": 0,
+          "end": 72,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "ff-3",
+      "tags": [
+        "fallacy",
+        "false-cause"
+      ],
+      "latencyMs": 1929.4057999999495,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "We hired a new coach in March and the team started winning in April, so the coach turned the season around.",
+          "start": 0,
+          "end": 107
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "We hired a new coach in March and the team started winning in April, so the coach turned the season around.",
+          "start": 0,
+          "end": 107,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "ff-4",
+      "tags": [
+        "fallacy",
+        "false-dilemma"
+      ],
+      "latencyMs": 1757.3412000000244,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "You either support the entire budget or you want the schools to fail.",
+          "start": 0,
+          "end": 69
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "You either support the entire budget or you want the schools to fail.",
+          "start": 0,
+          "end": 69,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "ff-5",
+      "tags": [
+        "fallacy",
+        "slippery-slope"
+      ],
+      "latencyMs": 2200.031799999997,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If we let students retake one exam, soon every grade will be negotiable and degrees will mean nothing.",
+          "start": 0,
+          "end": 102
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If we let students retake one exam, soon every grade will be negotiable and degrees will mean nothing.",
+          "start": 0,
+          "end": 102,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "version": "1.0.0",
+  "description": "Target cases for verifier confidence levels. Each case is a finding the detector could propose; the verifier should confirm it at the listed confidence.",
+  "cases": [
+    {
+      "id": "hi-1",
+      "fallacyId": "ad-hominem",
+      "expectedVerdict": "confirm",
+      "expectedConfidence": "high",
+      "text": "The new safety training is pointless because the trainer has a tattoo and rides a motorcycle.",
+      "why": "The personal facts are the whole argument and bear no relation to training competence. No support exists."
+    },
+    {
+      "id": "hi-2",
+      "fallacyId": "circular-reasoning",
+      "expectedVerdict": "confirm",
+      "expectedConfidence": "high",
+      "text": "The consultant's report is right because it is the most accurate report available.",
+      "why": "\"Most accurate\" restates \"right\". There is no independent premise."
+    },
+    {
+      "id": "hi-3",
+      "fallacyId": "bandwagon",
+      "expectedVerdict": "confirm",
+      "expectedConfidence": "high",
+      "text": "Every company is moving to four-day weeks, so ours should too; that many companies cannot be wrong.",
+      "why": "Popularity is the only support, and the sentence says so explicitly."
+    },
+    {
+      "id": "me-1",
+      "fallacyId": "false-cause",
+      "expectedVerdict": "confirm",
+      "expectedConfidence": "medium",
+      "text": "Sales rose after the ad campaign; the campaign reached 40,000 people, though we did not track conversions.",
+      "why": "Reach is partial support for exposure, but it does not establish that the campaign caused the sales. The text also admits the missing measurement."
+    },
+    {
+      "id": "me-2",
+      "fallacyId": "hasty-generalization",
+      "expectedVerdict": "confirm",
+      "expectedConfidence": "medium",
+      "text": "We surveyed 120 customers across three stores and 70% preferred the new layout, so customers nationwide will prefer it.",
+      "why": "The sample is real and not tiny, so it is partial support. The national conclusion still outruns it."
+    },
+    {
+      "id": "me-3",
+      "fallacyId": "false-dilemma",
+      "expectedVerdict": "confirm",
+      "expectedConfidence": "medium",
+      "text": "We can either cut the marketing budget or miss payroll; the spreadsheet shows a $40,000 gap.",
+      "why": "The gap is a genuine constraint, but it does not show that these are the only two options (a credit line or delayed hiring would also close it)."
+    },
+    {
+      "id": "lo-1",
+      "fallacyId": "slippery-slope",
+      "expectedVerdict": "confirm",
+      "expectedConfidence": "low",
+      "text": "If we let one team work from home, soon the whole company will be remote.",
+      "why": "The chain is asserted without support, but \"soon the whole company\" may be deliberate hyperbole. The label is arguable."
+    },
+    {
+      "id": "lo-2",
+      "fallacyId": "circular-reasoning",
+      "expectedVerdict": "confirm",
+      "expectedConfidence": "low",
+      "text": "The policy is fair because everyone pays the same rate.",
+      "why": "Equal rates may be a definition of fair rather than a restatement of the conclusion. The circularity label is doubtful."
+    },
+    {
+      "id": "lo-3",
+      "fallacyId": "ad-hominem",
+      "expectedVerdict": "confirm",
+      "expectedConfidence": "low",
+      "text": "The senator's vote on the bill is suspect because the industry donated to his campaign.",
+      "why": "A donation can be relevant to motive, unlike an insult. The sentence does not show the donation changed the vote, so the label is weak."
+    }
+  ]
+}

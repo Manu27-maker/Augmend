@@ -15,7 +15,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-meta">
-          <p>React + Vite demo · mocked analysis</p>
+          <p>React + Vite · Express · Groq</p>
           <p className="footer-fine">
             Detects patterns, not verdicts. Always review the suggested rewrite in context.
           </p>

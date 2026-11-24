@@ -1,0 +1,185 @@
+{
+  "version": "1.0.0",
+  "description": "Held-out benchmark. Do not tune the prompt against these cases; run once per prompt version and report the result as-is.",
+  "changelog": [
+    "1.0.0 — 18 unseen cases written after prompt v2 was frozen: 10 single-fallacy, 2 multi-fallacy, 6 clean/hard-negative."
+  ],
+  "cases": [
+    {
+      "id": "h-fc-1",
+      "tags": ["single", "false-cause"],
+      "text": "Our website got a redesign in January, and sign-ups went up the same month. The redesign is obviously what brought in all the new users.",
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "The redesign is obviously what brought in all the new users."
+        }
+      ]
+    },
+    {
+      "id": "h-st-1",
+      "tags": ["single", "strawman"],
+      "text": "The mayor supports a pilot bike lane, which is just a sneaky way to ban cars from the entire downtown.",
+      "expected": [
+        {
+          "fallacyId": "strawman",
+          "sentence": "The mayor supports a pilot bike lane, which is just a sneaky way to ban cars from the entire downtown."
+        }
+      ]
+    },
+    {
+      "id": "h-ss-1",
+      "tags": ["single", "slippery-slope"],
+      "text": "If we let employees work from home on Fridays, pretty soon nobody will come to the office at all and the company will collapse.",
+      "expected": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If we let employees work from home on Fridays, pretty soon nobody will come to the office at all and the company will collapse."
+        }
+      ]
+    },
+    {
+      "id": "h-ad-1",
+      "tags": ["single", "ad-hominem"],
+      "text": "Don't listen to her analysis of the tax plan; she grew up wealthy, so her numbers cannot be trusted.",
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Don't listen to her analysis of the tax plan; she grew up wealthy, so her numbers cannot be trusted."
+        }
+      ]
+    },
+    {
+      "id": "h-hg-1",
+      "tags": ["single", "hasty-generalization"],
+      "text": "The last two laptops I bought from that brand broke, so their products are all unreliable.",
+      "expected": [
+        {
+          "fallacyId": "hasty-generalization",
+          "sentence": "The last two laptops I bought from that brand broke, so their products are all unreliable."
+        }
+      ]
+    },
+    {
+      "id": "h-fd-1",
+      "tags": ["single", "false-dilemma"],
+      "text": "You can either support this rezoning plan or admit you want housing to stay unaffordable.",
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "You can either support this rezoning plan or admit you want housing to stay unaffordable."
+        }
+      ]
+    },
+    {
+      "id": "h-aa-1",
+      "tags": ["single", "appeal-to-authority"],
+      "text": "A celebrity chef says this diet is the healthiest in the world, so we should ignore the nutritionists who disagree.",
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "A celebrity chef says this diet is the healthiest in the world, so we should ignore the nutritionists who disagree."
+        }
+      ]
+    },
+    {
+      "id": "h-cr-1",
+      "tags": ["single", "circular-reasoning"],
+      "text": "This book is the most reliable source because no other source is as trustworthy as this book.",
+      "expected": [
+        {
+          "fallacyId": "circular-reasoning",
+          "sentence": "This book is the most reliable source because no other source is as trustworthy as this book."
+        }
+      ]
+    },
+    {
+      "id": "h-bw-1",
+      "tags": ["single", "bandwagon"],
+      "text": "All the other teams have adopted the new workflow, so we should adopt it too; that many teams cannot be wrong.",
+      "expected": [
+        {
+          "fallacyId": "bandwagon",
+          "sentence": "All the other teams have adopted the new workflow, so we should adopt it too; that many teams cannot be wrong."
+        }
+      ]
+    },
+    {
+      "id": "h-rh-1",
+      "tags": ["single", "red-herring"],
+      "text": "Instead of answering the audit question, the director spent ten minutes praising the company's new cafeteria.",
+      "expected": [
+        {
+          "fallacyId": "red-herring",
+          "sentence": "Instead of answering the audit question, the director spent ten minutes praising the company's new cafeteria."
+        }
+      ]
+    },
+    {
+      "id": "h-multi-1",
+      "tags": ["multi"],
+      "text": "Since we hired the new coach, the team has lost three games, so the coach is the reason we are losing. Anyone who wants to keep him must not care about winning.",
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "Since we hired the new coach, the team has lost three games, so the coach is the reason we are losing."
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Anyone who wants to keep him must not care about winning."
+        }
+      ]
+    },
+    {
+      "id": "h-multi-2",
+      "tags": ["multi"],
+      "text": "The proposal is backed by a famous economist, so it must be sound. And if you disagree, you are obviously part of the problem.",
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "The proposal is backed by a famous economist, so it must be sound."
+        },
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "And if you disagree, you are obviously part of the problem."
+        }
+      ]
+    },
+    {
+      "id": "h-clean-1",
+      "tags": ["clean"],
+      "text": "The pilot program cost $400,000 and served 1,200 residents, or about $333 per person. The council will vote on whether to continue it after the independent review is published.",
+      "expected": []
+    },
+    {
+      "id": "h-clean-2",
+      "tags": ["clean", "hedged"],
+      "text": "Our survey response rate was only 18 percent, so the results may not represent the full membership. We should treat the findings as preliminary.",
+      "expected": []
+    },
+    {
+      "id": "h-clean-3",
+      "tags": ["clean"],
+      "text": "The manufacturer recalled the battery after three incidents were reported. Regulators said the defect affected a single production batch made in 2022.",
+      "expected": []
+    },
+    {
+      "id": "h-clean-4",
+      "tags": ["clean", "emotional"],
+      "text": "I support the strike because the nurses have worked without a contract for a year. Their proposed raise would cost the hospital $1.2 million, which the budget can cover.",
+      "expected": []
+    },
+    {
+      "id": "h-clean-5",
+      "tags": ["clean", "adversarial"],
+      "text": "The editorial calls the mayor's argument a strawman, but it does not quote the passage it is criticizing.",
+      "expected": []
+    },
+    {
+      "id": "h-clean-6",
+      "tags": ["clean", "authority"],
+      "text": "According to the city's chief engineer, the dam passed its safety inspection. The inspection report lists the measurements and is publicly available.",
+      "expected": []
+    }
+  ]
+}

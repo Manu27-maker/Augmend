@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "description": "Held-out precision benchmark. Written after verifier prompt v3 was frozen; do not tune against these cases.",
+  "changelog": [
+    "1.0.0 — 16 unseen cases: 12 clean hard negatives and 4 clear fallacies, using patterns not present in precision-set.json."
+  ],
+  "cases": [
+    {
+      "id": "ph-1",
+      "tags": ["clean", "causal"],
+      "text": "A 2025 randomized trial found that the tutoring program raised test scores by 0.2 standard deviations. The effect persisted after controlling for prior achievement and attendance.",
+      "expected": []
+    },
+    {
+      "id": "ph-2",
+      "tags": ["clean", "authority"],
+      "text": "According to the National Transportation Safety Board's investigation, the crash was caused by a faulty sensor. The report includes the sensor logs and a reproduction of the failure.",
+      "expected": []
+    },
+    {
+      "id": "ph-3",
+      "tags": ["clean", "reported"],
+      "text": "The essay argues that the advertisement commits a bandwagon fallacy by implying that popularity proves quality.",
+      "expected": []
+    },
+    {
+      "id": "ph-4",
+      "tags": ["clean", "hedged"],
+      "text": "Of the twelve interviews we conducted, eight mentioned scheduling as a concern. That is too few to represent the whole staff, so we recommend a larger survey.",
+      "expected": []
+    },
+    {
+      "id": "ph-5",
+      "tags": ["clean", "rhetorical"],
+      "text": "Is it unreasonable to ask for the underlying data before adopting the policy?",
+      "expected": []
+    },
+    {
+      "id": "ph-6",
+      "tags": ["clean", "emotional"],
+      "text": "I am disappointed by the layoffs. The company cut 120 roles while reporting a $40 million profit, according to its quarterly filing.",
+      "expected": []
+    },
+    {
+      "id": "ph-7",
+      "tags": ["clean", "dilemma"],
+      "text": "The ballot measure requires a simple majority, and with only two candidates and no write-in option, voters must choose one of the two.",
+      "expected": []
+    },
+    {
+      "id": "ph-8",
+      "tags": ["clean", "correlation"],
+      "text": "The two trends moved together for a decade, but the researchers caution that both are driven by population growth, not by one causing the other.",
+      "expected": []
+    },
+    {
+      "id": "ph-9",
+      "tags": ["clean", "steelman"],
+      "text": "Advocates say the fee will reduce congestion; the city's own model predicts a 6 percent drop, which I think is too small to justify the cost.",
+      "expected": []
+    },
+    {
+      "id": "ph-10",
+      "tags": ["clean", "anecdote"],
+      "text": "Last winter my pipes froze because I forgot to drain them. This year I will shut off the water before the first freeze.",
+      "expected": []
+    },
+    {
+      "id": "ph-11",
+      "tags": ["clean", "expertise"],
+      "text": "The electrician traced the short to a damaged outlet, showed me the scorched wiring, and replaced the breaker.",
+      "expected": []
+    },
+    {
+      "id": "ph-12",
+      "tags": ["clean", "conditional"],
+      "text": "If the inspection finds mold, we will delay the sale and remediate; otherwise we will close on schedule.",
+      "expected": []
+    },
+    {
+      "id": "pf-h1",
+      "tags": ["fallacy", "ad-hominem"],
+      "text": "We should ignore the auditor's findings because she is young and dresses poorly.",
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "We should ignore the auditor's findings because she is young and dresses poorly."
+        }
+      ]
+    },
+    {
+      "id": "pf-h2",
+      "tags": ["fallacy", "appeal-to-authority"],
+      "text": "A famous athlete endorses this investment fund, so it is guaranteed to be safe.",
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "A famous athlete endorses this investment fund, so it is guaranteed to be safe."
+        }
+      ]
+    },
+    {
+      "id": "pf-h3",
+      "tags": ["fallacy", "hasty-generalization"],
+      "text": "Two of the five users I asked disliked the update, so all customers will hate it.",
+      "expected": [
+        {
+          "fallacyId": "hasty-generalization",
+          "sentence": "Two of the five users I asked disliked the update, so all customers will hate it."
+        }
+      ]
+    },
+    {
+      "id": "pf-h4",
+      "tags": ["fallacy", "false-dilemma"],
+      "text": "Either we eliminate the department entirely or we admit that waste is acceptable.",
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "Either we eliminate the department entirely or we admit that waste is acceptable."
+        }
+      ]
+    }
+  ]
+}

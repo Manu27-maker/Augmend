@@ -1,0 +1,396 @@
+{
+  "runAt": "2026-11-19T14:08:13.572Z",
+  "apiUrl": "http://localhost:5000",
+  "model": "openai/gpt-oss-120b",
+  "promptVersion": "v2",
+  "datasetVersion": "1.0.0",
+  "verification": {
+    "enabled": true,
+    "statuses": {
+      "ok": 16
+    },
+    "model": "openai/gpt-oss-20b",
+    "promptVersion": "v8",
+    "minConfidence": "medium",
+    "checked": 4,
+    "confirmed": 4,
+    "rejected": 0,
+    "unverified": 0,
+    "lowConfidence": 0,
+    "dropped": 0
+  },
+  "usageTotals": {
+    "promptTokens": 14216,
+    "completionTokens": 2654,
+    "totalTokens": 16870
+  },
+  "verifierUsageTotals": {
+    "promptTokens": 5049,
+    "completionTokens": 896,
+    "totalTokens": 5945
+  },
+  "metrics": {
+    "cases": 16,
+    "expectedFindings": 4,
+    "predictedFindings": 4,
+    "tp": 4,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1,
+    "recall": 1,
+    "f1": 1,
+    "macroPrecision": 1,
+    "macroRecall": 1,
+    "exactSetMatches": 16,
+    "documentAccuracy": 100,
+    "spanExactRate": 100,
+    "meanSpanOverlap": 1,
+    "cleanCases": 12,
+    "cleanCasesWithFindings": 0,
+    "cleanFalsePositiveRate": 0,
+    "perFallacy": [
+      {
+        "id": "false-cause",
+        "name": "False Cause",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "strawman",
+        "name": "Strawman",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "slippery-slope",
+        "name": "Slippery Slope",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "ad-hominem",
+        "name": "Ad Hominem",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "hasty-generalization",
+        "name": "Hasty Generalization",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "false-dilemma",
+        "name": "False Dilemma",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "appeal-to-authority",
+        "name": "Appeal to Authority",
+        "support": 1,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "circular-reasoning",
+        "name": "Circular Reasoning",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "bandwagon",
+        "name": "Bandwagon",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      {
+        "id": "red-herring",
+        "name": "Red Herring",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      }
+    ],
+    "latency": {
+      "meanMs": 1062.3097687499999,
+      "maxMs": 2924.2598999999973
+    }
+  },
+  "cases": [
+    {
+      "id": "ph-1",
+      "tags": [
+        "clean",
+        "causal"
+      ],
+      "latencyMs": 747.3869,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-2",
+      "tags": [
+        "clean",
+        "authority"
+      ],
+      "latencyMs": 694.2380999999996,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-3",
+      "tags": [
+        "clean",
+        "reported"
+      ],
+      "latencyMs": 530.8817000000008,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-4",
+      "tags": [
+        "clean",
+        "hedged"
+      ],
+      "latencyMs": 1035.179,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-5",
+      "tags": [
+        "clean",
+        "rhetorical"
+      ],
+      "latencyMs": 449.8202999999994,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-6",
+      "tags": [
+        "clean",
+        "emotional"
+      ],
+      "latencyMs": 996.2835000000014,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-7",
+      "tags": [
+        "clean",
+        "dilemma"
+      ],
+      "latencyMs": 925.4549999999981,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-8",
+      "tags": [
+        "clean",
+        "correlation"
+      ],
+      "latencyMs": 939.313900000001,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-9",
+      "tags": [
+        "clean",
+        "steelman"
+      ],
+      "latencyMs": 1149.3804999999993,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-10",
+      "tags": [
+        "clean",
+        "anecdote"
+      ],
+      "latencyMs": 768.157900000002,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-11",
+      "tags": [
+        "clean",
+        "expertise"
+      ],
+      "latencyMs": 427.5748999999996,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "ph-12",
+      "tags": [
+        "clean",
+        "conditional"
+      ],
+      "latencyMs": 620.484199999999,
+      "exactSetMatch": true,
+      "expected": [],
+      "predicted": [],
+      "verdict": "✅ clean"
+    },
+    {
+      "id": "pf-h1",
+      "tags": [
+        "fallacy",
+        "ad-hominem"
+      ],
+      "latencyMs": 1579.6547999999966,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "We should ignore the auditor's findings because she is young and dresses poorly.",
+          "start": 0,
+          "end": 80
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "We should ignore the auditor's findings because she is young and dresses poorly.",
+          "start": 0,
+          "end": 80,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "pf-h2",
+      "tags": [
+        "fallacy",
+        "appeal-to-authority"
+      ],
+      "latencyMs": 1609.344600000004,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "A famous athlete endorses this investment fund, so it is guaranteed to be safe.",
+          "start": 0,
+          "end": 79
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "A famous athlete endorses this investment fund, so it is guaranteed to be safe.",
+          "start": 0,
+          "end": 79,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "pf-h3",
+      "tags": [
+        "fallacy",
+        "hasty-generalization"
+      ],
+      "latencyMs": 2924.2598999999973,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "hasty-generalization",
+          "sentence": "Two of the five users I asked disliked the update, so all customers will hate it.",
+          "start": 0,
+          "end": 81
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "hasty-generalization",
+          "sentence": "Two of the five users I asked disliked the update, so all customers will hate it.",
+          "start": 0,
+          "end": 81,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    },
+    {
+      "id": "pf-h4",
+      "tags": [
+        "fallacy",
+        "false-dilemma"
+      ],
+      "latencyMs": 1599.5411000000022,
+      "exactSetMatch": true,
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "Either we eliminate the department entirely or we admit that waste is acceptable.",
+          "start": 0,
+          "end": 81
+        }
+      ],
+      "predicted": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "Either we eliminate the department entirely or we admit that waste is acceptable.",
+          "start": 0,
+          "end": 81,
+          "verified": true,
+          "confidence": "high"
+        }
+      ],
+      "verdict": "✅ exact"
+    }
+  ]
+}

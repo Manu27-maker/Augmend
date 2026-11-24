@@ -1,0 +1,136 @@
+{
+  "version": "1.0.0",
+  "description": "Fresh precision benchmark written after verifier prompt v8 was frozen. Never used for tuning; use for the final unbiased estimate.",
+  "changelog": [
+    "1.0.0 — 17 unseen cases: 12 clean hard negatives and 5 clear fallacies, with surface forms not used in earlier sets or prompt examples."
+  ],
+  "cases": [
+    {
+      "id": "fx-1",
+      "tags": ["clean", "causal"],
+      "text": "The plant's output fell 12 percent after the conveyor motor failed; maintenance logs show the motor was offline for three shifts.",
+      "expected": []
+    },
+    {
+      "id": "fx-2",
+      "tags": ["clean", "authority"],
+      "text": "The Cochrane review, which pooled 14 trials, found a modest benefit, though the authors rate the evidence quality as moderate.",
+      "expected": []
+    },
+    {
+      "id": "fx-3",
+      "tags": ["clean", "reported"],
+      "text": "Her op-ed accuses the senator of a strawman, arguing that he answered a position she never took.",
+      "expected": []
+    },
+    {
+      "id": "fx-4",
+      "tags": ["clean", "hedged"],
+      "text": "Our pilot covered two departments and the results look promising, though we cannot speak for the other six.",
+      "expected": []
+    },
+    {
+      "id": "fx-5",
+      "tags": ["clean", "rhetorical"],
+      "text": "If the savings are as large as claimed, why has no auditor been allowed to review the books?",
+      "expected": []
+    },
+    {
+      "id": "fx-6",
+      "tags": ["clean", "emotional"],
+      "text": "I am angry about the fee. It is $40 per month, and the notice arrived three days before it took effect.",
+      "expected": []
+    },
+    {
+      "id": "fx-7",
+      "tags": ["clean", "dilemma"],
+      "text": "The lease allows either a one-year renewal or a month-to-month extension; those are the only two options in the contract.",
+      "expected": []
+    },
+    {
+      "id": "fx-8",
+      "tags": ["clean", "correlation"],
+      "text": "Regions with more libraries report higher literacy, but both are associated with income, so the comparison does not establish causation.",
+      "expected": []
+    },
+    {
+      "id": "fx-9",
+      "tags": ["clean", "steelman"],
+      "text": "Critics say the merger will raise prices; the filing projects a 3 percent increase, which I think is too high a price to accept.",
+      "expected": []
+    },
+    {
+      "id": "fx-10",
+      "tags": ["clean", "anecdote"],
+      "text": "My laptop battery died after two years because I left it plugged in constantly; I will cap charging at 80 percent next time.",
+      "expected": []
+    },
+    {
+      "id": "fx-11",
+      "tags": ["clean", "expertise"],
+      "text": "The surveyor measured the slope at 14 degrees and marked the boundary stakes on the plat.",
+      "expected": []
+    },
+    {
+      "id": "fx-12",
+      "tags": ["clean", "conditional"],
+      "text": "If the recall rate falls below 1 percent, we will keep the process; if not, we will switch vendors.",
+      "expected": []
+    },
+    {
+      "id": "ff-1",
+      "tags": ["fallacy", "ad-hominem"],
+      "text": "Her analysis of the tax code is wrong because she drives an expensive car.",
+      "expected": [
+        {
+          "fallacyId": "ad-hominem",
+          "sentence": "Her analysis of the tax code is wrong because she drives an expensive car."
+        }
+      ]
+    },
+    {
+      "id": "ff-2",
+      "tags": ["fallacy", "appeal-to-authority"],
+      "text": "A retired tennis star says this vitamin cures insomnia, so it must work.",
+      "expected": [
+        {
+          "fallacyId": "appeal-to-authority",
+          "sentence": "A retired tennis star says this vitamin cures insomnia, so it must work."
+        }
+      ]
+    },
+    {
+      "id": "ff-3",
+      "tags": ["fallacy", "false-cause"],
+      "text": "We hired a new coach in March and the team started winning in April, so the coach turned the season around.",
+      "expected": [
+        {
+          "fallacyId": "false-cause",
+          "sentence": "We hired a new coach in March and the team started winning in April, so the coach turned the season around."
+        }
+      ]
+    },
+    {
+      "id": "ff-4",
+      "tags": ["fallacy", "false-dilemma"],
+      "text": "You either support the entire budget or you want the schools to fail.",
+      "expected": [
+        {
+          "fallacyId": "false-dilemma",
+          "sentence": "You either support the entire budget or you want the schools to fail."
+        }
+      ]
+    },
+    {
+      "id": "ff-5",
+      "tags": ["fallacy", "slippery-slope"],
+      "text": "If we let students retake one exam, soon every grade will be negotiable and degrees will mean nothing.",
+      "expected": [
+        {
+          "fallacyId": "slippery-slope",
+          "sentence": "If we let students retake one exam, soon every grade will be negotiable and degrees will mean nothing."
+        }
+      ]
+    }
+  ]
+}

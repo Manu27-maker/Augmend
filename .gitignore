@@ -12,3 +12,5 @@ yarn-error.log*
 .vscode/*
 !.vscode/extensions.json
 .idea/
+# Local-only documentation (not published to GitHub)
+PROJECT.md

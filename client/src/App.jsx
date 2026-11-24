@@ -68,8 +68,8 @@ export default function App() {
     try {
       const response = await analyzeArgument(text)
       setResult(response)
-    } catch {
-      setError('Something went wrong while analyzing the text. Please try again.')
+    } catch (error) {
+      setError(error?.message || 'Something went wrong while analyzing the text. Please try again.')
     } finally {
       setIsLoading(false)
     }

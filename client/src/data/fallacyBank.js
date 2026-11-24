@@ -1,6 +1,6 @@
 /**
  * Fallacy reference bank.
- * A structured list of common fallacies used by the mock analyzer and by the
+ * A structured list of common fallacies used by the analyzer and by the
  * "What we look for" panel in the UI. Each entry pairs a plain-language
  * definition with a recognisable reasoning pattern.
  */
