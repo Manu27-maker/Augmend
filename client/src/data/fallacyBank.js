@@ -92,7 +92,9 @@ export const FALLACY_BY_ID = Object.fromEntries(
 )
 
 /** A short essay seeded with four recognisable reasoning errors. */
-export const SAMPLE_ARGUMENT = `Cities should adopt a citywide curfew for teenagers. Ever since the city introduced the new curfew, crime has gone down — so the curfew is clearly working.
+export const SAMPLE_ARGUMENT = `We surveyed 400 residents in four districts and 68 per cent backed the curfew, so every teenager in the region will respect it.
+
+Cities should adopt a citywide curfew for teenagers. Ever since the city introduced the new curfew, crime has gone down — so the curfew is clearly working.
 
 My opponent wants to expand the youth program instead, but he has never run a business, so his proposal is worthless. Supporters of the policy claim we should consider the evidence, but what they really want is to let criminals walk free.
 

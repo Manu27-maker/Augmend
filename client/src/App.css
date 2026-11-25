@@ -640,6 +640,9 @@
 }
 
 .card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   flex-shrink: 0;
   margin-top: 3px;
   padding: 4px 9px;
@@ -656,6 +659,27 @@
   background: var(--accent-soft);
   color: var(--accent-strong);
   box-shadow: inset 0 0 0 1px var(--accent-border);
+}
+
+/* Confidence meter: three ordinal marks, one per level. Filled marks are the
+   level; unfilled marks are the scale, so quantity — not hue — carries meaning
+   and it stays readable in either theme and for colour-blind readers. */
+.conf-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.conf-meter__seg {
+  width: 7px;
+  height: 4px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.conf-meter__seg.is-on {
+  opacity: 1;
 }
 
 .card-quote {

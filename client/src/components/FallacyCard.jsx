@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { AlertIcon, CheckIcon, CopyIcon, PenIcon } from './Icons'
 
+const CONFIDENCE_RANK = { low: 1, medium: 2, high: 3 }
+
 export default function FallacyCard({ fallacy, index, isActive, onActivate }) {
   const [copyState, setCopyState] = useState('idle')
   const timeoutRef = useRef(null)
 
   useEffect(() => () => clearTimeout(timeoutRef.current), [])
+
+  const confidence = fallacy.verified ? fallacy.confidence || 'medium' : null
+  const confidenceRank = CONFIDENCE_RANK[confidence] ?? 0
 
   async function handleCopy() {
     try {
@@ -18,6 +23,14 @@ export default function FallacyCard({ fallacy, index, isActive, onActivate }) {
     clearTimeout(timeoutRef.current)
     timeoutRef.current = setTimeout(() => setCopyState('idle'), 2200)
   }
+
+  const badgeTitle = fallacy.verified
+    ? confidence === 'high'
+      ? 'Second-model review kept this finding: no supporting text was found. This is a review status, not a probability.'
+      : confidence === 'low'
+        ? 'Second-model review kept this finding, but the label itself may not apply. This is a review status, not a probability.'
+        : 'Second-model review kept this finding: partial or ambiguous support exists. This is a review status, not a probability.'
+    : 'Detector finding, not reviewed by the second model'
 
   return (
     <article
@@ -36,17 +49,19 @@ export default function FallacyCard({ fallacy, index, isActive, onActivate }) {
         </div>
         <span
           className={`card-badge${fallacy.verified ? ' card-badge--verified' : ''}`}
-          title={
-            fallacy.verified
-              ? fallacy.confidence === 'high'
-                ? 'Second-model review kept this finding: no supporting text was found. This is a review status, not a probability.'
-                : fallacy.confidence === 'low'
-                  ? 'Second-model review kept this finding, but the label itself may not apply. This is a review status, not a probability.'
-                  : 'Second-model review kept this finding: partial or ambiguous support exists. This is a review status, not a probability.'
-              : 'Detector finding, not reviewed by the second model'
-          }
+          title={badgeTitle}
         >
-          {fallacy.verified ? `Verified · ${fallacy.confidence || 'medium'}` : 'Flagged'}
+          {fallacy.verified && (
+            <span className="conf-meter" aria-hidden="true">
+              {[1, 2, 3].map((step) => (
+                <span
+                  key={step}
+                  className={`conf-meter__seg${confidenceRank >= step ? ' is-on' : ''}`}
+                />
+              ))}
+            </span>
+          )}
+          {fallacy.verified ? `Verified · ${confidence}` : 'Flagged'}
         </span>
       </header>
 
