@@ -135,8 +135,8 @@ npm run build
       explanation: "Why the reasoning breaks...",
       suggested_rewrite: "A stronger version of the claim...",
       verified: true,    // present only when the second pass kept the finding
-      confidence: "high", // high | medium; "low" is dropped by the default threshold
-      verification_note: undefined, // "unsupported_rejection" | "contradictory_verdict" when a verdict could not be applied
+      confidence: "high", // high | medium | low, derived from evidence; "low" is dropped by the default threshold
+      verification_note: undefined, // "unsupported_rejection" | "unsupported_support" | "missing_verdict" when a verdict could not be applied
       verification_reason: "The sentence asserts causation from timing alone."
     }
   ],
@@ -151,14 +151,14 @@ npm run build
       enabled: true,
       status: "ok",                 // ok | failed
       model: "openai/gpt-oss-20b",
-      promptVersion: "v12",
+      promptVersion: "v14",
       minConfidence: "medium",
       checked: 3,
       confirmed: 2,
       rejected: 1,
       unverified: 0,
       unsupportedRejections: 0,
-      contradictoryConfirmations: 0,
+      unsupportedConfirmations: 0,
       lowConfidence: 0,
       dropped: 1,                   // rejected + below confidence threshold
       latencyMs: 780,
@@ -188,18 +188,26 @@ quoted sentence, its label definition, and a small context window around the hig
 - Findings the verifier rejects are removed.
 - Findings below `MIN_VERIFIER_CONFIDENCE` (default `medium`) are removed.
 - Kept findings carry `verified: true` and a `confidence` value, which the UI shows as a badge.
-  `high` means the defect is unmistakable and the text supplies no support; `medium` means the
-  label is defensible but the text supplies partial, ambiguous, or incomplete support.
+- **Confidence is derived from quoted evidence, never self-reported.** The reviewer does not pick
+  a level; it quotes the words that give partial support (or `"none"`) and flags `doubtful` when
+  the label itself may not apply. The server then computes the level:
+  - no support quote → `high` — the passage supplies nothing that touches the claim,
+  - a verbatim support quote → `medium` — real support exists but does not defeat the label,
+  - `doubtful: true` → `low` — the label is arguable, and the default threshold drops it.
+  A `confidence` field written by the model is ignored. This design is measured, not assumed:
+  asking both `gpt-oss-20b` and `gpt-oss-120b` to self-report a level collapsed to `high` on
+  every confirmation (3/9 and 0/9 on the fixture), so the level is computed from evidence the
+  grounding check already validates.
 - **Rejections must be grounded.** When the verifier rejects a finding, its `justification` must
   be a verbatim quote from the submitted text (case, punctuation, and whitespace are ignored
   when matching). If the quote is missing from the input — for example, an invented study or a
   paraphrase — the rejection is not applied: the finding is kept with `verified: false` and
   `verification_note: "unsupported_rejection"`. This prevents a hallucinated justification from
   silently costing recall.
-- **Contradictory confirmations are not trusted.** A confirmation is told to report `"none"` as
-  its justification and to describe partial support only in `reason`. If it nevertheless claims
-  supporting text exists, the finding is kept as `verified: false` with
-  `verification_note: "contradictory_verdict"`, so a confused verdict never raises confidence.
+- **Support quotes must be grounded too.** A confirmation that quotes partial support is only
+  trusted when those words are actually in the text. An invented support quote fails open: the
+  finding is kept as `verified: false` with `verification_note: "unsupported_support"` instead of
+  being marked reviewed on the strength of a hallucination.
 - **Fail-open:** if the verifier is rate limited, times out, or returns malformed or partial
   JSON, the detector findings are returned unchanged and `meta.verification.status` is
   `failed`. A failed second pass never hides results.
@@ -209,7 +217,8 @@ quoted sentence, its label definition, and a small context window around the hig
 
 Identical submissions are served from a bounded in-memory cache instead of calling Groq again.
 The key is a SHA-256 of the passage plus every setting that changes the answer: detector model,
-detector prompt version, whether verification is on, verifier model, and minimum confidence. A
+detector prompt version, whether verification is on, verifier model, verifier prompt version, and
+minimum confidence. A
 cache hit returns the stored result with `meta.cached: true`; the passage text itself is never
 stored in the key.
 
@@ -274,7 +283,7 @@ npm run replay:precision:fresh -- --min-confidence high
 
 `--record` calls the detector in-process with verification disabled, so the fixture holds raw
 detector findings, not verifier-filtered ones. `--replay latest` picks the highest recorded prompt
-version for the dataset (`v12` beats `v9`), and replay refuses a fixture whose text or dataset
+version for the dataset (`v2` beats `v1`), and replay refuses a fixture whose text or dataset
 version no longer matches. Fixtures are named `<dataset>-detector-<prompt-version>.json`; use
 `--out <file>` to override. The replay report records the fixture name in its source line so a
 number can always be traced back to the exact detector output that produced it.
@@ -297,8 +306,11 @@ npm run probe:confidence -- --case me-1 --case lo-1 # a subset
 ```
 
 The runner calls the verifier with `MIN_VERIFIER_CONFIDENCE=low` so a `low` verdict is visible
-instead of being dropped, and exits non-zero when a case does not land on its expected level.
-Treat a mismatch as a prompt signal, not a broken test — the cases are deliberately borderline.
+instead of being dropped, and reads the **derived** level — the one the server computed from the
+reviewer's quoted evidence, not anything the model wrote — then exits non-zero when a case does
+not land on its expected level. Treat a mismatch as a prompt signal, not a broken test — the
+cases are deliberately borderline. The current v14 result is 5/9: all three `high` cases and two
+of the three `medium` cases land; `me-1` and the three `low` cases come back `high`.
 
 | Level | Case | Passage | Why it targets that level |
 | --- | --- | --- | --- |
@@ -415,7 +427,7 @@ could not be completed: the free-tier daily cap was exhausted by the investigati
 table therefore keeps the v10 fresh row and reports v11 as a targeted fix, not a measured
 improvement.
 
-Prompt v12 changes only the confidence semantics described below. It does not relax the
+Prompts v12–v14 changed only the confidence mechanism described below. They do not relax the
 rejection rules; `high` is reserved for “no support at all”, and partial support stays in the
 output as `medium` instead of being forced to `high`.
 
@@ -444,10 +456,30 @@ precise on adversarial sets — useful, but not the guarantee the word suggests.
 
 The cause was a rubric defect, not a model defect. The v10 prompt told the reviewer to “use
 confidence medium and still reject” when support was weak or partial. Rejection removes the
-finding, so a confirmation could only ever be `high`. v12 fixes this: partial or ambiguous
-support produces a confirmed finding at `medium`, and `high` is reserved for an unmistakable
-defect with no support. Until v12 is benchmarked, keep the default threshold at `medium` and
-treat the badge as “reviewed by a second model”, not as a probability.
+finding, so a confirmation could only ever be `high`.
+
+Asking for a level directly did not fix it, and that was measured rather than assumed:
+
+| Attempt | Result |
+| --- | --- |
+| v12 — ask for `high`/`medium`/`low` | 3/9 fixture cases landed; **all nine** returned `high` |
+| v13 — same, plus worked medium/low examples | 4/9 on `gpt-oss-20b`; **0/4** on `gpt-oss-120b` |
+| v14 — derive the level from quoted evidence | 5/9, with `medium` produced by grounded quotes |
+
+Both models stamp `high` on every confirmation: once the verdict is “confirm”, it reads as
+certainty. So v14 removes the self-report. The reviewer quotes the words that give partial
+support (or `"none"`) and sets `doubtful` when the label may not apply; the server derives
+`high` / `medium` / `low` from those fields and validates the quote with the same grounding
+check that guards rejections. Under v14 the fixture's `medium` cases land through real verbatim
+quotes (`"We surveyed 120 customers across three stores…"`, `"the spreadsheet shows a $40,000
+gap"`), and a live API call returns `confidence: "medium"` where v10 could only produce `high`.
+
+Two fixture cases still return `high` instead of `medium` (the reviewer judged the reach figure
+as no support) and all three `low` cases return `high` (the `doubtful` flag was never set).
+Since `low` is dropped by the default floor anyway, the badge range users actually see is
+`high`/`medium`, and that range now exists. Keep the default threshold at `medium` and treat the
+badge as “reviewed by a second model”, not as a probability. The fixture is nine author-labeled
+borderline cases; further tuning against it would overfit, so it is left as an honest signal.
 
 ### Error analysis and limitations
 
@@ -458,19 +490,20 @@ treat the badge as “reviewed by a second model”, not as a probability.
   signals, not a publishable accuracy claim; reasonable annotators may disagree on borderline
   rhetoric.
 - Groq does not guarantee bit-identical output even at `temperature: 0` with a fixed seed, so
-  scores can move by a case or two between runs. Prompt versions v1–v12 were iterated during
+  scores can move by a case or two between runs. Prompt versions v1–v14 were iterated during
   development; the tuning sets are optimistic by construction.
 - The free tier is limited to 8,000 tokens/minute and 200,000 tokens/day per model. Benchmark
-  runs and verifier probing exhausted both the 120b and 20b daily caps, which is why v11 and v12
+  runs and verifier probing exhausted both the 120b and 20b daily caps, which is why v11–v14
   are validated by targeted probes rather than full runs.
 - Findings whose quoted sentence cannot be located in the input are dropped and count as
   misses, which keeps highlighting trustworthy.
 - Only one finding is kept per sentence span. If one sentence commits two different fallacies,
   the second can be dropped, which costs recall.
-- `confidence` is an ordinal review signal, not a calibrated probability. The measured buckets
-  are reported in every evaluation run; the first fresh run showed `high` at 71.4% precision
-  with no `medium` or `low` findings, which is why v12 separates “no support” from “partial
-  support”. Do not treat `high` as a statistical guarantee.
+- `confidence` is an ordinal review signal, not a calibrated probability, and under v14 it is
+  **derived** from the reviewer's quoted support rather than chosen by the model. The measured
+  buckets are reported in every evaluation run; the first fresh run showed `high` at 71.4%
+  precision with no `medium` or `low` findings, which is why the level is now computed from
+  evidence instead of self-reported. Do not treat `high` as a statistical guarantee.
 - The fresh set is no longer strictly untouched: its `fx-1` and `fx-7` cases motivated the v11
   rules. Future estimates should use a new, never-inspected set.
 - The verifier fails open. If it is unavailable, results are returned unverified rather than

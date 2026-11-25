@@ -18,7 +18,7 @@ const DEFAULT_MODEL = 'openai/gpt-oss-20b'
 const REQUEST_TIMEOUT_MS = 15_000
 const MAX_ATTEMPTS = 2
 
-export const VERIFIER_PROMPT_VERSION = 'v12'
+export const VERIFIER_PROMPT_VERSION = 'v14'
 
 const CONFIDENCE_RANK = { low: 0, medium: 1, high: 2 }
 
@@ -32,10 +32,12 @@ For each item, work through these steps in order:
    - The quoted words must pass the label-specific test below. If the words are themselves the defect — an insult, a popularity count, a tiny or self-selected sample, a restated conclusion — the justification is "none". A premise does not become justification merely because it is quoted.
    - A paraphrase of the claim is not a justification. "It is right because it is the most accurate" restates the claim; the words "most accurate" are not evidence.
    - If the support is a decision rule, quote the rule itself, not a description of it.
-3. Confirm only if the sentence asserts the reasoning AND the support does not defeat the label. If the text supplies support that passes the label-specific test, reject. If the support is partial, ambiguous, or incomplete, confirm with confidence "medium". Confirm with "high" only when the defect is unmistakable and there is no support at all.
-   - For a confirmation, write "none" in "justification" and describe any partial support in "reason". "justification" is only for support that defeats the label, so it is used on rejections.
+3. Confirm only if the sentence asserts the reasoning AND the support does not defeat the label. If the text supplies support that passes the label-specific test, reject.
+   - On a rejection, "justification" holds the support that defeats the label, or "none" when the defect is clear.
+   - On a confirmation, "justification" holds any partial support that touches the claim but does not defeat the label — a real sample, a real constraint, a stated mechanism. Write "none" only when the passage supplies no supporting words at all. This quote is what the confidence level is computed from, so quote it whenever it exists.
    - Do not demand proof. The question is whether the reasoning is fallacious, not whether it is conclusive. Relevant but incomplete support makes the finding lower confidence, not invalid.
    - Never reject merely because the support is weak or inconclusive. Reject only when the text supplies support of the kind the label's escape condition names.
+4. Set "doubtful" to true only when the label itself may not apply at all: the reasoning is ordinary disagreement, a definition, deliberate hyperbole, or a motive that is genuinely relevant to the claim. Otherwise set it to false. Do not set it to true merely because the support is thin.
 
 Label-specific checks:
 - false-dilemma: the options must be presented as the only ones without a source. A conditional plan ("if X, do A; if not, do B") is a decision rule, not a forced choice. An external constraint that fixes the option set — a contract clause, a rule, a statute, a budget cap — is justification; reject.
@@ -60,13 +62,20 @@ Examples:
 - "The new safety training is pointless because the trainer has a tattoo and rides a motorcycle." → confirm ad-hominem; justification: none, because a tattoo and a motorcycle do not bear on training competence.
 - After "sign-ups went up the same month": "The redesign is obviously what brought in all the new users." → confirm false-cause; justification: none, because only timing is given.
 
-Confidence (only for confirmations):
-- "high": the sentence clearly commits the named fallacy and the text supplies no support of the kind the label's escape condition names.
-- "medium": the label is defensible, but the text supplies partial, ambiguous, or incomplete support that does not fully defeat it.
-- "low": the label is doubtful.
+Confidence is computed from what you write, never chosen by you:
+- "justification" is "none" on a confirmation → high: the passage supplies no supporting words.
+- "justification" quotes real partial support → medium: support exists but does not defeat the label.
+- "doubtful" is true → low: the label itself may not apply.
+A "confidence" field in your output is ignored, so do not write one.
+
+Confirmation examples with the fields they produce:
+- "We tested the new checkout with twelve shoppers and nine preferred it, so shoppers everywhere prefer it." → confirm hasty-generalization; justification: "we tested the new checkout with twelve shoppers and nine preferred it" (a real sample exists, but it does not cover the sweeping conclusion); doubtful: false. → medium.
+- "We can either freeze hiring or delay the release, because the runway is down to six months." → confirm false-dilemma; justification: "the runway is down to six months" (a real constraint, but it does not fix the option set); doubtful: false. → medium.
+- "If we let one team ship on Fridays, soon the whole company will be shipping chaos." → confirm slippery-slope; justification: none; doubtful: true (the sentence reads as rhetorical exaggeration, so the label is arguable). → low.
+- "The safety training is pointless because the trainer has a tattoo." → confirm ad-hominem; justification: none (no supporting text of any kind appears); doubtful: false. → high.
 
 Return JSON only, in exactly this shape:
-{"verdicts":[{"index":0,"verdict":"confirm","confidence":"high","justification":"none","reason":"one sentence"}]}
+{"verdicts":[{"index":0,"verdict":"reject","justification":"the total award is capped at $200,000","reason":"an external constraint fixes the option set"},{"index":1,"verdict":"confirm","justification":"none","doubtful":false,"reason":"no supporting words appear"}]}
 
 Every input index must appear exactly once, in order.`
 
@@ -231,7 +240,7 @@ export async function verifyFindings(
     rejected: 0,
     unverified: 0,
     unsupportedRejections: 0,
-    contradictoryConfirmations: 0,
+    unsupportedConfirmations: 0,
     lowConfidence: 0,
     dropped: 0,
     latencyMs: 0,
@@ -260,16 +269,26 @@ export async function verifyFindings(
     const verdict = verdicts.get(index)
     const justification =
       typeof verdict?.justification === 'string' ? verdict.justification : ''
-    const grounded =
-      justification && !isNoneJustification(justification)
-        ? isGroundedJustification(justification, normalizedText)
-        : null
+    const hasSupport = Boolean(justification) && !isNoneJustification(justification)
+    const grounded = hasSupport ? isGroundedJustification(justification, normalizedText) : null
+    const doubtful = verdict?.doubtful === true
+
+    // Confidence is derived from evidence the reviewer quoted, never from a
+    // self-reported level. Measured behaviour: both models stamp "high" on
+    // every confirmation when asked for a level directly.
+    //   support quoted and grounded → medium (support exists, does not defeat)
+    //   no support quoted           → high   (the passage supplies nothing)
+    //   doubt flag                  → low    (the label itself may not apply)
+    const derivedConfidence = doubtful ? 'low' : hasSupport ? 'medium' : 'high'
 
     const detail = {
       index,
       fallacyId: finding.fallacyId,
       verdict: typeof verdict?.verdict === 'string' ? verdict.verdict : 'missing',
-      confidence: typeof verdict?.confidence === 'string' ? verdict.confidence : null,
+      confidence: derivedConfidence,
+      selfReported:
+        typeof verdict?.confidence === 'string' ? verdict.confidence : null,
+      doubtful,
       justification: justification ? justification.slice(0, 400) : null,
       grounded,
       reason: typeof verdict?.reason === 'string' ? verdict.reason.slice(0, 400) : null,
@@ -303,24 +322,22 @@ export async function verifyFindings(
       continue
     }
 
-    if (!isNoneJustification(justification)) {
-      // A confirmation must not claim that supporting text exists. Treat the
-      // contradiction as unverified instead of labeling the finding as
-      // reviewed, so a confused verdict never raises confidence.
+    if (grounded === false) {
+      // A confirmation that quotes supporting words which are not in the input
+      // cannot be trusted. Fail open: keep the finding unverified instead of
+      // marking it reviewed on the strength of an invented quote.
       info.unverified += 1
-      info.contradictoryConfirmations += 1
+      info.unsupportedConfirmations += 1
       kept.push({
         ...finding,
         verified: false,
-        verification_note: 'contradictory_verdict',
+        verification_note: 'unsupported_support',
         verification_reason: detail.reason,
       })
       continue
     }
 
-    const confidence = Object.hasOwn(CONFIDENCE_RANK, verdict.confidence)
-      ? verdict.confidence
-      : 'low'
+    const confidence = derivedConfidence
 
     if (CONFIDENCE_RANK[confidence] < CONFIDENCE_RANK[threshold]) {
       info.lowConfidence += 1

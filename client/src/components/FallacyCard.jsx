@@ -40,7 +40,9 @@ export default function FallacyCard({ fallacy, index, isActive, onActivate }) {
             fallacy.verified
               ? fallacy.confidence === 'high'
                 ? 'Second-model review kept this finding: no supporting text was found. This is a review status, not a probability.'
-                : 'Second-model review kept this finding: partial or ambiguous support exists. This is a review status, not a probability.'
+                : fallacy.confidence === 'low'
+                  ? 'Second-model review kept this finding, but the label itself may not apply. This is a review status, not a probability.'
+                  : 'Second-model review kept this finding: partial or ambiguous support exists. This is a review status, not a probability.'
               : 'Detector finding, not reviewed by the second model'
           }
         >

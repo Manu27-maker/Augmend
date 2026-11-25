@@ -25,6 +25,18 @@ test('cache keys separate every input that changes the result', () => {
   assert.notEqual(key, cacheKey({ ...base, minConfidence: 'high' }))
 })
 
+test('cache keys separate verifier prompt versions', () => {
+  // A verifier prompt change alters confidence and accept/reject decisions, so
+  // a v12 result must never be served for a v13 configuration.
+  const key = cacheKey(base)
+  assert.notEqual(key, cacheKey({ ...base, verifierPromptVersion: 'v13' }))
+  // Without verification there is no verifier prompt to vary.
+  assert.equal(
+    cacheKey({ ...base, verify: false }),
+    cacheKey({ ...base, verify: false, verifierPromptVersion: 'v13' }),
+  )
+})
+
 test('cache keys do not leak the passage text', () => {
   const key = cacheKey(base)
   assert.equal(key.includes('tattoo'), false)

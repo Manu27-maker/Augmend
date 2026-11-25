@@ -10,6 +10,7 @@ export function cacheKey({
   promptVersion,
   verify,
   verifierModel,
+  verifierPromptVersion,
   minConfidence,
 }) {
   const digest = createHash('sha256').update(String(text)).digest('hex')
@@ -19,6 +20,7 @@ export function cacheKey({
     promptVersion || '-',
     verify ? 'verify' : 'raw',
     verify ? verifierModel || '-' : '-',
+    verify ? verifierPromptVersion || '-' : '-',
     verify ? minConfidence || '-' : '-',
   ].join('|')
 }

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { loadEnvFile } from 'node:process'
 import { AnalysisError, analyzeWithGroq, PROMPT_VERSION } from './analyzer.js'
 import { ResultCache, cacheKey } from './cache.js'
+import { VERIFIER_PROMPT_VERSION } from './verifier.js'
 
 // Load server/.env without overriding variables already set in the environment.
 try {
@@ -103,6 +104,7 @@ app.post('/api/analyze', async (req, res) => {
         promptVersion: PROMPT_VERSION,
         verify: VERIFY_FINDINGS,
         verifierModel: VERIFIER_MODEL,
+        verifierPromptVersion: VERIFIER_PROMPT_VERSION,
         minConfidence: MIN_VERIFIER_CONFIDENCE,
       })
     : null

@@ -60,6 +60,7 @@ function info(fields) {
     rejected: 0,
     unverified: 0,
     unsupportedRejections: 0,
+    unsupportedConfirmations: 0,
     contradictoryConfirmations: 0,
     lowConfidence: 0,
     dropped: 0,

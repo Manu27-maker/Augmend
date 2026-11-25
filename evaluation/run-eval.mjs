@@ -487,6 +487,8 @@ export const VERIFICATION_COUNTERS = [
   'rejected',
   'unverified',
   'unsupportedRejections',
+  'unsupportedConfirmations',
+  // Older fixtures recorded this name; keep reading it so old reports still total.
   'contradictoryConfirmations',
   'lowConfidence',
   'dropped',
@@ -504,6 +506,7 @@ export function emptyVerificationTotals() {
     rejected: 0,
     unverified: 0,
     unsupportedRejections: 0,
+    unsupportedConfirmations: 0,
     contradictoryConfirmations: 0,
     lowConfidence: 0,
     dropped: 0,
@@ -836,7 +839,7 @@ export function buildReport({
       `- **Checked:** ${verification.checked} | **Confirmed:** ${verification.confirmed} | **Rejected:** ${verification.rejected} | **Unverified (kept):** ${verification.unverified} | **Dropped as low confidence:** ${verification.lowConfidence}`,
     )
     lines.push(
-      `- **Unsupported rejections (kept):** ${verification.unsupportedRejections || 0} | **Contradictory confirmations (kept):** ${verification.contradictoryConfirmations || 0}`,
+      `- **Unsupported rejections (kept):** ${verification.unsupportedRejections || 0} | **Unsupported support quotes (kept):** ${verification.unsupportedConfirmations || 0}`,
     )
     lines.push(`- **Verifier failures (findings kept, fail-open):** ${failed}`)
     lines.push('')
